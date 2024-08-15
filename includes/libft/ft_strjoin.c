@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 16:25:07 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/05/10 17:03:11 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/15 19:45:06 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	total_length = ft_strlen((char *)s1) + ft_strlen((char *)s2);
 	result = (char *)malloc((total_length + 1) * sizeof (char));
 	if (result == NULL)
-		return (NULL);
+		return (free(s1), NULL);
 	while (s1 != NULL && s1[i])
 	{
 		result[i] = s1[i];

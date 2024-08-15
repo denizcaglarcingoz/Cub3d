@@ -1,34 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   get_file_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 16:48:52 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 18:57:15 by dcingoz          ###   ########.fr       */
+/*   Created: 2024/08/15 19:26:03 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/08/15 19:49:33 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libraries.h"
 
-int main(int argc, char **argv)
+char	*get_file_data(char *file_name)
 {
-	t_mlx	libx;
+	int		fd;
+	char	*content;
+	char	*line;
 
-	if (argc != 2)
-		arg_error();
-	parser_main(argv[1]);
-	libx.mlx = mlx_init();
-	if (libx.mlx == NULL) {
-		return (EXIT_FAILURE); // Initialization failed
+	fd = open(file_name, O_RDONLY);
+	if (fd < 0)
+		fd_error();
+	content = ft_strdup("");
+	if (!content)
+		malloc_error();
+	while (1)
+	{
+		line = get_next_line(fd);
+		if (!line)
+			break ;
+		content = ft_strjoin(content, line);
+		if (!content)
+			(free(line), malloc_error());
+		free(line);
 	}
-	libx.win = mlx_new_window(libx.mlx, 800, 600, "My Window");
-	if (libx.win == NULL) {
-	    free(libx.mlx); // Clean up if window creation fails
-	    return (EXIT_FAILURE);
-	}
-	mlx_loop(libx.mlx);
-
-	return (EXIT_SUCCESS);
+	close(fd);
+	return (content);
 }

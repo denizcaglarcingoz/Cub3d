@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minilibx.h                                         :+:      :+:    :+:   */
+/*   functions.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 16:08:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 18:19:18 by dcingoz          ###   ########.fr       */
+/*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/08/15 19:38:31 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINILIBX_H
-# define MINILIBX_H
+#ifndef FUNCTIONS_H
+# define FUNCTIONS_H
 
 # include "libraries.h"
 
-typedef struct s_mlx
-{
-	void	*mlx;
-	void	*win;
-	void	*img;
-} t_mlx;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-} t_img;
+/* PARSER */
+
+void	parser_main(char *file_name);
+void	file_name_check(char *file_name);
+char	*get_file_data(char *file_name);
+
+/* ERRORS */
+
+void	arg_error(void);
+void	fd_error(void);
+void	malloc_error(void);
 
 #endif

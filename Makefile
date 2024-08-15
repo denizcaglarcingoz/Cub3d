@@ -6,7 +6,8 @@ BT_DIR = ./builtins
 
 INCLUDES = ./includes/minilibx.h ./includes/libraries.h
 
-SRCS =	./src/main.c
+SRCS = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c)  $(wildcard $(SRC_DIR)/*/*/*.c) $(wildcard $(SRC_DIR)/*/*/*/*.c)
+#SRCS =	./src/main.c
 
 
 OBJ = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)

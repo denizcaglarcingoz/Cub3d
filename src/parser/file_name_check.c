@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minilibx.h                                         :+:      :+:    :+:   */
+/*   file_name_check.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 16:08:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 18:19:18 by dcingoz          ###   ########.fr       */
+/*   Created: 2024/08/15 18:59:04 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/08/15 19:00:12 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINILIBX_H
-# define MINILIBX_H
+#include "libraries.h"
 
-# include "libraries.h"
-
-typedef struct s_mlx
+void	file_name_check(char *file_name)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-} t_mlx;
+	int		i;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-} t_img;
-
-#endif
+	i = 0;
+	while (file_name[i])
+		i++;
+	if (i < 4 || file_name[i - 1] != 'b' || file_name[i - 2] != 'u'
+		|| file_name[i - 3] != 'c' || file_name[i - 4] != '.')
+	{
+		ft_putstr_fd("Error\n", STDERR_FILENO);
+		ft_putstr_fd("Invalid file name\n", STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
+}

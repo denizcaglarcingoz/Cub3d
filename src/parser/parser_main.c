@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minilibx.h                                         :+:      :+:    :+:   */
+/*   parser_main.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 16:08:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 18:19:18 by dcingoz          ###   ########.fr       */
+/*   Created: 2024/08/15 18:57:36 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/08/15 19:50:36 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINILIBX_H
-# define MINILIBX_H
+#include "libraries.h"
 
-# include "libraries.h"
-
-typedef struct s_mlx
+void	parser_main(char *file_name)
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-} t_mlx;
+	char	*data;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-} t_img;
-
-#endif
+	file_name_check(file_name);
+	data = get_file_data(file_name);
+	data_check(data);
+	// while (get_next_line(fd, &line) > 0)
+	// {
+	// 	ft_putstr_fd(line, STDOUT_FILENO);
+	// 	ft_putchar_fd('\n', STDOUT_FILENO);
+	// 	free(line);
+	// }
+	// close(fd);
+}
