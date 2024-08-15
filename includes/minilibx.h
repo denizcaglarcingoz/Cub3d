@@ -1,29 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libraries.h                                        :+:      :+:    :+:   */
+/*   mlx.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 15:38:32 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 16:49:53 by dcingoz          ###   ########.fr       */
+/*   Created: 2024/08/15 16:08:16 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/08/15 16:14:06 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef LIBRARIES_H
-# define LIBRARIES_H
+#ifndef MLX_H
+# define MLX_H
 
-# include "libft/libft.h"
-# include <mlx.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <stdio.h>
-# include <math.h>
-# include <sys/stat.h>
-# include <fcntl.h>
-# include <sys/time.h>
+# include "libraries.h"
 
-# include "minilibx.h"
+struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+} t_mlx;
 
 #endif

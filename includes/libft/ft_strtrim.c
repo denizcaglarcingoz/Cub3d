@@ -6,12 +6,18 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:16:51 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/06/28 02:36:01 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/15 16:20:58 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
 #include "libft.h"
+
+int	is_white_space(char c)
+{
+	if (c == ' ' || c == 9 || c == 10 || c == 11 || c == 12 || c == 13)
+		return (1);
+	return (0);
+}
 
 static int	isset(char c, const char *s)
 {
