@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 19:38:31 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/16 18:09:25 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,16 @@
 
 # include "libraries.h"
 
+/* INP CHECK */
+
+void	inp_check_main(char *file_name);
+void	file_name_check(char *file_name);
+char	*get_file_data(char *file_name);
+void	data_check(char *data);
+void	texture_check(char *data);
 
 /* PARSER */
 
-void	parser_main(char *file_name);
-void	file_name_check(char *file_name);
-char	*get_file_data(char *file_name);
 
 /* ERRORS */
 

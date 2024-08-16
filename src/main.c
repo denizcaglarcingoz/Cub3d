@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:48:52 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 18:57:15 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/16 18:03:44 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(int argc, char **argv)
 
 	if (argc != 2)
 		arg_error();
-	parser_main(argv[1]);
+	inp_check_main(argv[1]);
 	libx.mlx = mlx_init();
 	if (libx.mlx == NULL) {
 		return (EXIT_FAILURE); // Initialization failed

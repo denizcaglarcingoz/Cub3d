@@ -1,29 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser_main.c                                      :+:      :+:    :+:   */
+/*   data_check.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/15 18:57:36 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 19:50:36 by dcingoz          ###   ########.fr       */
+/*   Created: 2024/08/15 19:50:57 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/08/16 18:08:53 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libraries.h"
 
-void	parser_main(char *file_name)
+void	min_line(char *data)
 {
-	char	*data;
+	int	i;
+	int	line;
 
-	file_name_check(file_name);
-	data = get_file_data(file_name);
-	data_check(data);
-	// while (get_next_line(fd, &line) > 0)
-	// {
-	// 	ft_putstr_fd(line, STDOUT_FILENO);
-	// 	ft_putchar_fd('\n', STDOUT_FILENO);
-	// 	free(line);
-	// }
-	// close(fd);
+	i = 0;
+	line = 0;
+	while (data[i])
+	{
+		if (data[i] == '\n')
+			line++;
+		i++;
+	}
+	if (line < 8)
+	{	
+		ft_putstr_fd("Error\nMinimum 8 lines of inp required\n", 2);
+		free(data);
+		exit(EXIT_FAILURE);	
+	}
+}
+
+void	data_check(char *data)
+{
+	min_line(data);
+	texture_check(data);
 }
