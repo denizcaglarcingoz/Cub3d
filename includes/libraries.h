@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:38:32 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 18:56:17 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/16 18:15:28 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,5 +26,6 @@
 
 # include "minilibx.h"
 # include "functions.h"
+# include "inp_data.h"
 
 #endif
