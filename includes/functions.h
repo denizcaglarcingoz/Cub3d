@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/16 18:09:25 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/16 18:13:47 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@ void	data_check(char *data);
 void	texture_check(char *data);
 
 /* PARSER */
+
+
+/* EXECUTION */
 
 
 /* ERRORS */
