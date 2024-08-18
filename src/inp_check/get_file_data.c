@@ -11,7 +11,7 @@ char	*get_file_data(char *file_name)
 		fd_error();
 	content = ft_strdup("");
 	if (!content)
-		malloc_error();
+		(close(fd), malloc_error());
 	while (1)
 	{
 		line = get_next_line(fd);
@@ -19,7 +19,7 @@ char	*get_file_data(char *file_name)
 			break ;
 		content = ft_strjoin(content, line);
 		if (!content)
-			(free(line), malloc_error());
+			(close(fd), free(line), malloc_error());
 		free(line);
 	}
 	close(fd);

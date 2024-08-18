@@ -11,12 +11,12 @@ int main(int argc, char **argv)
 	if (libx.mlx == NULL) {
 		return (EXIT_FAILURE); // Initialization failed
 	}
+	return (EXIT_SUCCESS);
 	libx.win = mlx_new_window(libx.mlx, 800, 600, "My Window");
 	if (libx.win == NULL) {
 	    free(libx.mlx); // Clean up if window creation fails
 	    return (EXIT_FAILURE);
 	}
 	mlx_loop(libx.mlx);
-
 	return (EXIT_SUCCESS);
 }

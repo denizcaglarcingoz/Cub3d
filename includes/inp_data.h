@@ -14,6 +14,8 @@
 # define INP_DATA_H
 
 # include "libraries.h"
+# include "minilibx.h"
+# include "functions.h"
 
 typedef struct s_inp_data
 {
@@ -22,6 +24,8 @@ typedef struct s_inp_data
 	char	*we_path;
 	char	*ea_path;
 	char	*sprite_path;
+	char	*floor_color_data;
+	char	*ceiling_color_data;
 	int		floor_color;
 	int		ceiling_color;
 	char	**map;

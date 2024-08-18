@@ -25,5 +25,4 @@ void	data_check(char *data)
 {
 	min_line(data);
 	element_check(data);
-	texture_check(data);
 }

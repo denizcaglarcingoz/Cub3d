@@ -14,6 +14,8 @@
 # define FUNCTIONS_H
 
 # include "libraries.h"
+# include "inp_data.h"
+# include "minilibx.h"
 
 /* INP CHECK */
 
@@ -24,7 +26,8 @@ void	data_check(char *data);
 void	element_check(char *data);
 void	inp_to_null(t_inp_data *inp);
 void	texture_check(char *data);
-void	path_check(char *data, int *i);
+void	path_check(char *data, int *i, t_inp_data *inp);
+void    color_check(char *data, int *i, t_inp_data *inp);
 // void	so_check(char *data, int *i, t_inp_data *inp);
 // void	ea_check(char *data, int *i, t_inp_data *inp);
 // void	we_check(char *data, int *i, t_inp_data *inp);

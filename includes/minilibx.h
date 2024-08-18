@@ -14,6 +14,8 @@
 # define MINILIBX_H
 
 # include "libraries.h"
+# include "functions.h"
+# include "inp_data.h"
 
 typedef struct s_mlx
 {

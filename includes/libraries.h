@@ -14,7 +14,7 @@
 # define LIBRARIES_H
 
 # include "libft/libft.h"
-# include <mlx.h>
+# include </home/dcingoz/Downloads/minilibx-linux/mlx.h>
 # include <string.h>
 # include <stdlib.h>
 # include <unistd.h>

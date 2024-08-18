@@ -19,12 +19,16 @@ void	element_find(char *data, int *i, t_inp_data *inp)
 	else if ((data[*i] == 'N' || data[*i] == 'S' ||
 			data[*i] == 'W' || data[*i] == 'E'))
 	{
-		path_check(data, i);
+		path_check(data, i, inp);
 		p_check++;
 	}
 	else
 	{
-		element_check_err(data, inp);
+		printf("Sdata[*i] = %c\n", data[*i]);
+		if (c_check != 1 || p_check != 1)
+			element_check_err(data, inp);
+		if (data[*i] != '1')
+			element_check_err(data, inp);
 	}
 	if (c_check > 1 || p_check > 1)
 		element_check_err(data, inp);
@@ -39,9 +43,9 @@ void	element_find(char *data, int *i, t_inp_data *inp)
 void	texture_control(char *data, t_inp_data	*inp)
 {
 	if (inp->no_path == NULL || inp->so_path == NULL || inp->we_path == NULL || inp->ea_path == NULL)
-		element_check_err(NULL, inp);
-	if (inp->floor_color == -1 || inp->ceiling_color == -1)
-		element_check_err(NULL, inp);
+		element_check_err(data, inp);
+	if (inp->floor_color_data == NULL || inp->ceiling_color_data == NULL)
+		element_check_err(data, inp);
 }
 
 void	element_check(char *data)
@@ -56,7 +60,10 @@ void	element_check(char *data)
 		if (data[i] == ' ' || data[i] == '\n')
 			while (data[i] == ' ' || data[i] == '\n')
 				i++;
-		element_find(&data, &i, &inp);
+		element_find(data, &i, &inp);
+		if (data[i] == '1')
+			break ;
 	}
+	printf("here\n");
 	texture_control(data, &inp);
 }
