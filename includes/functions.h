@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/16 20:10:30 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/19 22:14:23 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ void		texture_check(char *data);
 void		path_check(char *data, int *i, t_inp_data *inp);
 void    	color_check(char *data, int *i, t_inp_data *inp);
 void		map_check_main(char *data, int *i, t_inp_data *inp);
+void		map_into_array(char *data, int i, t_inp_data *inp);
+void		map_init(char *data, int *size, t_inp_data *inp);
+void		map_data_copy(char *data, int i, t_inp_data *inp);
+
 
 /* INP DATA FREE */
 
@@ -50,5 +54,10 @@ void		element_check_err(char *data, t_inp_data *inp);
 
 /* GENERAL ERRORS */
 void		malloc_error(void);
+
+
+/* TESTS */
+void	   print_d_str(char **data);
+
 
 #endif

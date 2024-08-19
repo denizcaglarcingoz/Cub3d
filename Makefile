@@ -13,7 +13,8 @@ SRCS = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c)  $(wildcard $(SRC
 OBJ = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 CFLAGS := -Wall -Wextra -Werror -Iincludes -I/usr/local/lib
 
-LDFLAGS := -L/usr/local/lib -lmlx -lXext -lX11 -lreadline -lhistory
+#LDFLAGS := -L/usr/local/lib -lmlx -lXext -lX11 -lreadline -lhistory
+LDFLAGS := -Llib -lmlx -lXext -lX11 -lreadline -lhistory
 
 RM := rm -f
 
