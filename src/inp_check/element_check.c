@@ -48,22 +48,20 @@ void	texture_control(char *data, t_inp_data	*inp)
 		element_check_err(data, inp);
 }
 
-void	element_check(char *data)
+t_inp_data	element_check(char *data, int *i)
 {
-	int			i;
 	t_inp_data	inp;
 
-	i = 0;
 	inp_to_null(&inp);
-	while (data[i])
+	while (data[*i])
 	{
-		if (data[i] == ' ' || data[i] == '\n')
-			while (data[i] == ' ' || data[i] == '\n')
-				i++;
-		element_find(data, &i, &inp);
-		if (data[i] == '1')
+		if (data[*i] == ' ' || data[*i] == '\n')
+			while (data[*i] == ' ' || data[*i] == '\n')
+				(*i)++;
+		element_find(data, i, &inp);
+		if (data[*i] == '1')
 			break ;
 	}
-	printf("here\n");
 	texture_control(data, &inp);
+	return (inp);
 }

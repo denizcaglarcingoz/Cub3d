@@ -23,6 +23,12 @@ void	min_line(char *data)
 
 void	data_check(char *data)
 {
+	int	i;
+	t_inp_data	inp;
+
+	i = 0;
 	min_line(data);
-	element_check(data);
+	inp = element_check(data, &i);
+	printf("i = %d\n", i);
+	map_check_main(data, &i, &inp);
 }
