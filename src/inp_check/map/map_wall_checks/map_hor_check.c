@@ -5,8 +5,8 @@ int hor_check(t_inp_data *inp)
 	int	i;
 	int	j;
 
-	i = 1;
-	while (inp->map[i + 1])
+	i = 0;
+	while (inp->map[i])
 	{
 		j = 0;
 		while (inp->map[i][j] == ' ')
@@ -29,7 +29,8 @@ int hor_check(t_inp_data *inp)
 				if (inp->map[i][j] != '1')
 					return (1);
 			}
-			j++;
+			if (inp->map[i][j] != '\0')
+				j++;
 		}
 		i++;
 	}
