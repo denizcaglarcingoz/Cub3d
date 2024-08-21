@@ -28,5 +28,11 @@ void    map_check_main(char *data, int *i, t_inp_data *inp)
 {
 	map_char_check(data, *i, inp);
 	map_into_array(data, *i, inp);
-	// map_wall_check(data, i, inp);
+	if (map_wall_check(inp) == 1)
+	{
+		free(data);
+		inp_data_free(inp);
+		ft_putstr_fd("Error\nWall Error\n", 2);
+		exit(EXIT_FAILURE);
+	}
 }

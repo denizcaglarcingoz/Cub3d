@@ -3,10 +3,11 @@
 int main(int argc, char **argv)
 {
 	t_mlx	libx;
+	t_inp_data	inp;
 
 	if (argc != 2)
 		arg_error();
-	inp_check_main(argv[1]);
+	inp_check_main(argv[1], &inp);
 	libx.mlx = mlx_init();
 	if (libx.mlx == NULL) {
 		return (EXIT_FAILURE); // Initialization failed

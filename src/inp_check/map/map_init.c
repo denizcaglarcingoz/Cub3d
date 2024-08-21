@@ -33,20 +33,24 @@ void	map_space_fill(int *size, t_inp_data *inp)
 		inp->map[i][j] = '\0';
 		i++;
 	}
+	i = 0;
+	while(i <= size[1])
+	{
+		inp->map[size[0]][i] = '\0';
+		i++;
+	}
 }
 
 void	map_init(char *data, int *size, t_inp_data *inp)
 {
 	int	i;
 
-	size[0] += 2;
-	size[1] += 2;
-	inp->map = (char **)malloc(sizeof(char *) * size[0] + 1);
+	inp->map = (char **)malloc(sizeof(char *) * (size[0] + 2));
 	if (inp->map == NULL)
 		map_malloc_fail(data, inp);
-	inp->map[size[0]] = NULL;
+	inp->map[size[0] + 1] = NULL;
 	i = 0;
-	while (i < size[0])
+	while (i <= size[0])
 	{
 		inp->map[i] = (char *)malloc(sizeof(char) * size[1] + 1);
 		if (inp->map[i] == NULL)

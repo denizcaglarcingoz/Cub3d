@@ -25,6 +25,7 @@ int	*map_array_size(char *data, int i, int *size)
 		}
 		i++;
 	}
+	size[0]++;
 	return (size);
 }
 

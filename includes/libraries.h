@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:38:32 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/19 19:27:52 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/21 21:06:05 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <sys/stat.h>
 # include <fcntl.h>
 # include <sys/time.h>
+# include <errno.h>
 
 # include "minilibx.h"
 # include "functions.h"

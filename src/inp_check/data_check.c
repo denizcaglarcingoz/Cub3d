@@ -21,14 +21,12 @@ void	min_line(char *data)
 	}
 }
 
-void	data_check(char *data)
+void	data_check(char *data, t_inp_data *inp)
 {
 	int	i;
-	t_inp_data	inp;
 
 	i = 0;
 	min_line(data);
-	inp = element_check(data, &i);
-	printf("i = %d\n", i);
-	map_check_main(data, &i, &inp);
+	element_check(data, &i, inp);
+	map_check_main(data, &i, inp);
 }

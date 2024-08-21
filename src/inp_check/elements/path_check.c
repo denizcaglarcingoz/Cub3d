@@ -54,6 +54,6 @@ void	path_check(char *data, int *i, t_inp_data *inp)
 			break ;
 	}
 	if (checks[0] != 1 || checks[1] != 1 || checks[2] != 1 || checks[3] != 1)
-		element_check_err(data, inp);
+		element_check_err(data, inp, "path error");
 
 }

@@ -26,42 +26,35 @@ void	element_find(char *data, int *i, t_inp_data *inp)
 	{
 		printf("Sdata[*i] = %c\n", data[*i]);
 		if (c_check != 1 || p_check != 1)
-			element_check_err(data, inp);
+			element_check_err(data, inp, "element error");
 		if (data[*i] != '1')
-			element_check_err(data, inp);
+			element_check_err(data, inp, "element error");
 	}
 	if (c_check > 1 || p_check > 1)
-		element_check_err(data, inp);
-	// else if (data[*i] == 'F')
-	// 	inp->floor_color = floor_check(data, i, inp);
-	// else if (data[*i] == 'C')
-	// 	inp->ceiling_color = ceiling_check(data, i, inp);
-	// else
-	// 	next_new_line(data, i);
+		element_check_err(data, inp, "element error");
 }
 
 void	texture_control(char *data, t_inp_data	*inp)
 {
 	if (inp->no_path == NULL || inp->so_path == NULL || inp->we_path == NULL || inp->ea_path == NULL)
-		element_check_err(data, inp);
+		element_check_err(data, inp, "texture null");
 	if (inp->floor_color_data == NULL || inp->ceiling_color_data == NULL)
-		element_check_err(data, inp);
+		element_check_err(data, inp, "texture null");
 }
 
-t_inp_data	element_check(char *data, int *i)
+void	element_check(char *data, int *i, t_inp_data *inp)
 {
-	t_inp_data	inp;
-
-	inp_to_null(&inp);
+	inp_to_null(inp);
 	while (data[*i])
 	{
 		if (data[*i] == ' ' || data[*i] == '\n')
 			while (data[*i] == ' ' || data[*i] == '\n')
 				(*i)++;
-		element_find(data, i, &inp);
+		element_find(data, i, inp);
 		if (data[*i] == '1')
 			break ;
 	}
-	texture_control(data, &inp);
-	return (inp);
+	texture_control(data, inp);
+	is_element(data, inp);
+	is_color(data, inp);
 }
