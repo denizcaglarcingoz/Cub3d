@@ -1,8 +1,29 @@
 #include "libraries.h"
 
-void    map_char_check(char *data, int i, t_inp_data *inp)
+int	map_chars(char *data, int i)
 {
-	int checks;
+	if (data[i] == '1')
+		return (1);
+	if (data[i] == '0')
+		return (1);
+	if (data[i] == ' ')
+		return (1);
+	if (data[i] == '\n')
+		return (1);
+	if (data[i] == 'W')
+		return (1);
+	if (data[i] == 'E')
+		return (1);
+	if (data[i] == 'N')
+		return (1);
+	if (data[i] == 'S')
+		return (1);
+	return (0);
+}
+
+void	map_char_check(char *data, int i, t_inp_data *inp)
+{
+	int	checks;
 
 	checks = 0;
 	while (data[i])
@@ -11,20 +32,19 @@ void    map_char_check(char *data, int i, t_inp_data *inp)
 			(i)++;
 		if (data[i] == 0)
 			break ;
-		if (data[i] != '1' && data[i] != '0' && data[i] != ' ' && data[i] != '\n' &&
-			data[i] != 'W' && data[i] != 'E' && data[i] != 'N' && data[i] != 'S')
+		if (map_chars(data, i) == 0)
 			checks++;
 		(i)++;
 	}
 	if (checks != 0)
 	{
 		inp_data_free(inp);
-		ft_putstr_fd("Error\nMap Error\n", 2);
+		ft_putstr_fd("Error\nMap Char Error\n", 2);
 		exit(EXIT_FAILURE);
-	}	
+	}
 }
 
-void    map_check_main(char *data, int *i, t_inp_data *inp)
+void	map_check_main(char *data, int *i, t_inp_data *inp)
 {
 	map_char_check(data, *i, inp);
 	map_into_array(data, *i, inp);

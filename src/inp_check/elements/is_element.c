@@ -1,6 +1,6 @@
 #include "libraries.h"
 
-void did_trim(char *data, t_inp_data *inp)
+void	did_trim(char *data, t_inp_data *inp)
 {
 	if (inp->no_path == NULL)
 		element_check_err(data, inp, "trim error");

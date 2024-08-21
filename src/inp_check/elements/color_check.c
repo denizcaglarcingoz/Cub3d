@@ -7,7 +7,7 @@ char	*color_data_get(char *data, int *i)
 
 	*i += 1;
 	while (data[*i] == ' ')
-		(*i)++;	
+		(*i)++;
 	j = *i;
 	color = NULL;
 	while (data[j] != '\n')
@@ -26,25 +26,29 @@ char	*color_data_get(char *data, int *i)
 	return (color);
 }
 
-void    color_check(char *data, int *i, t_inp_data *inp)
+void	color_check(char *data, int *i, t_inp_data *inp)
 {
-    int checks[2];
+	int	checks[2];
 
-    checks[0] = 0;
-    checks[1] = 0;
-
-    while (data[*i])
+	checks[0] = 0;
+	checks[1] = 0;
+	while (data[*i])
 	{
 		while (data[*i] == '\n' || data[*i] == ' ')
 			(*i)++;
 		if (data[*i] == 'F')
-			(inp->floor_color_data = color_data_get(data, i), checks[0]++);
+		{
+			inp->floor_color_data = color_data_get(data, i);
+			checks[0]++;
+		}
 		else if (data[*i] == 'C')
-			(inp->ceiling_color_data = color_data_get(data, i), checks[1]++);
+		{
+			inp->ceiling_color_data = color_data_get(data, i);
+			checks[1]++;
+		}
 		else
 			break ;
 	}
 	if (checks[0] != 1 || checks[1] != 1)
 		element_check_err(data, inp, "color error");
-	
 }

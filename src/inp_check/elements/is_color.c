@@ -2,7 +2,7 @@
 
 void	color_len(char *data, t_inp_data *inp)
 {
-	int color_len;
+	int	color_len;
 
 	color_len = ft_strlen(inp->floor_color_data);
 	if (color_len < 5 || color_len > 11)
@@ -11,8 +11,6 @@ void	color_len(char *data, t_inp_data *inp)
 	if (color_len < 5 || color_len > 11)
 		element_check_err(data, inp, "color error");
 }
-
-
 
 void	color_trim(char *data, t_inp_data *inp)
 {
@@ -24,11 +22,9 @@ void	color_trim(char *data, t_inp_data *inp)
 		element_check_err(data, inp, "color error");
 }
 
-
-
 void	color_ingredients(char *data, t_inp_data *inp)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (inp->floor_color_data[i])
@@ -47,13 +43,11 @@ void	color_ingredients(char *data, t_inp_data *inp)
 		i++;
 	}
 }
-	
 	// 0,0,0 min 
 	// 255,255,255 max
 
 void	is_color(char *data, t_inp_data *inp)
 {
-
 	color_trim(data, inp);
 	color_len(data, inp);
 	color_ingredients(data, inp);

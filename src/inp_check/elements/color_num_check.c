@@ -2,11 +2,11 @@
 
 int	color_num_rules(char *color)
 {
-	int i;
-	int j;
-	char *num_one;
-	char *num_two;
-	char *num_three;
+	int		i;
+	int		j;
+	char	*num_one;
+	char	*num_two;
+	char	*num_three;
 
 	i = 0;
 	while (color[i] != ',')

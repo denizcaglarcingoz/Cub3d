@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 20:08:33 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 20:11:36 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/21 23:17:33 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct s_inp_data
 	char	**map;
 	int		res_y;
 	int		res_x;
-} t_inp_data;
+}	t_inp_data;
 
 #endif

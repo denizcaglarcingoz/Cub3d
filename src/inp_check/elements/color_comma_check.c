@@ -2,8 +2,8 @@
 
 int	comma_rules(char *color)
 {
-	int i;
-	int comma;
+	int	i;
+	int	comma;
 
 	i = 0;
 	comma = 0;

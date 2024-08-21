@@ -34,7 +34,7 @@ void	map_space_fill(int *size, t_inp_data *inp)
 		i++;
 	}
 	i = 0;
-	while(i <= size[1])
+	while (i <= size[1])
 	{
 		inp->map[size[0]][i] = '\0';
 		i++;

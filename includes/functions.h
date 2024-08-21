@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/21 22:41:14 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/21 23:17:23 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		does_file_exist(char *data, t_inp_data *inp);
 void		is_xpm(char *data, t_inp_data *inp);
 void		texture_check(char *data);
 void		path_check(char *data, int *i, t_inp_data *inp);
-void    	color_check(char *data, int *i, t_inp_data *inp);
+void		color_check(char *data, int *i, t_inp_data *inp);
 void		map_check_main(char *data, int *i, t_inp_data *inp);
 void		map_into_array(char *data, int i, t_inp_data *inp);
 void		map_init(char *data, int *size, t_inp_data *inp);
@@ -41,10 +41,9 @@ void		map_data_copy(char *data, int i, t_inp_data *inp);
 int			map_wall_check(t_inp_data *inp);
 int			hor_border(t_inp_data *inp);
 int			ver_border(t_inp_data *inp);
-int 		char_check(t_inp_data *inp);
-int 		hor_check(t_inp_data *inp);
-int			ver_check(t_inp_data *inp);
-
+int			char_check(t_inp_data *inp);
+int			hor_check(char **map);
+int			ver_check(char **map);
 
 /* INP DATA FREE */
 
@@ -58,18 +57,12 @@ void		element_check_err(char *data, t_inp_data *inp, char *msg);
 
 /* PARSER */
 
-
-
-
 /* EXECUTION */
-
 
 /* GENERAL ERRORS */
 void		malloc_error(void);
 
-
 /* TESTS */
-void	   print_d_str(char **data);
-
+void		print_d_str(char **data);
 
 #endif

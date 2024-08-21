@@ -1,4 +1,3 @@
-
 #include "libraries.h"
 
 void	inp_to_null(t_inp_data *inp)

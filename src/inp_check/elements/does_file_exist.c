@@ -10,7 +10,7 @@ void	open_minus(char *data, t_inp_data *inp)
 
 void	does_file_exist(char *data, t_inp_data *inp)
 {
-	int fd;
+	int	fd;
 
 	fd = open(inp->no_path, O_RDONLY);
 	if (fd == -1)

@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:08:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/15 18:19:18 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/21 23:17:39 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_mlx
 	void	*mlx;
 	void	*win;
 	void	*img;
-} t_mlx;
+}	t_mlx;
 
 typedef struct s_img
 {
@@ -31,6 +31,6 @@ typedef struct s_img
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-} t_img;
+}	t_img;
 
 #endif

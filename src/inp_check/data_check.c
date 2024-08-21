@@ -14,10 +14,10 @@ void	min_line(char *data)
 		i++;
 	}
 	if (line < 8)
-	{	
+	{
 		ft_putstr_fd("Error\nMinimum 8 lines of inp required\n", 2);
 		free(data);
-		exit(EXIT_FAILURE);	
+		exit(EXIT_FAILURE);
 	}
 }
 
