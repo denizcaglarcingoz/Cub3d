@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/21 23:17:23 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/25 18:00:55 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 # define FUNCTIONS_H
 
 # include "libraries.h"
+# include "exec.h"
 # include "inp_data.h"
 # include "minilibx.h"
+
+typedef struct s_all t_all;
 
 /* INP CHECK */
 
@@ -44,6 +47,7 @@ int			ver_border(t_inp_data *inp);
 int			char_check(t_inp_data *inp);
 int			hor_check(char **map);
 int			ver_check(char **map);
+void		set_p_pos(t_inp_data *inp);
 
 /* INP DATA FREE */
 
@@ -58,6 +62,12 @@ void		element_check_err(char *data, t_inp_data *inp, char *msg);
 /* PARSER */
 
 /* EXECUTION */
+
+void		exec_main(t_all *inp);
+
+/* MLX ACTIONS */
+int			key_hook(int key_code, void *param);
+int			close_window(t_all *all);
 
 /* GENERAL ERRORS */
 void		malloc_error(void);

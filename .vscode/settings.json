@@ -12,6 +12,15 @@
 		"initializer_list": "c",
 		"ranges": "c",
 		"utility": "c",
-		"string": "c"
+		"string": "c",
+		"functions.h": "c",
+		"minilibx.h": "c",
+		"inp_data.h": "c",
+		"exec.h": "c",
+		"time.h": "c",
+		"math.h": "c",
+		"stat.h": "c",
+		"fcntl.h": "c",
+		"errno.h": "c"
 	}
 }

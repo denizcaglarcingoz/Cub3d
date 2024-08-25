@@ -57,5 +57,9 @@ void	map_init(char *data, int *size, t_inp_data *inp)
 			map_malloc_fail_d(data, inp, i);
 		i++;
 	}
+	inp->map_height = size[0];
+	inp->map_width = size[1];
+	printf("map_height: %d\n", inp->map_height);
+	printf("map_width: %d\n", inp->map_width);
 	map_space_fill(size, inp);
 }

@@ -7,4 +7,5 @@ void	inp_check_main(char *file_name, t_inp_data *inp)
 	file_name_check(file_name);
 	data = get_file_data(file_name);
 	data_check(data, inp);
+	set_p_pos(inp);
 }

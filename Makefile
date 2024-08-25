@@ -4,7 +4,7 @@ OBJ_DIR = ./obj
 INC_DIR = ./includes
 BT_DIR = ./builtins
 
-INCLUDES = ./includes/minilibx.h ./includes/libraries.h ./includes/funtcions.h ./includes/inp_data.h
+INCLUDES = ./includes/minilibx.h ./includes/libraries.h ./includes/funtcions.h ./includes/inp_data.h ./includes/exec.h
 
 SRCS = $(wildcard $(SRC_DIR)/*.c) $(wildcard $(SRC_DIR)/*/*.c)  $(wildcard $(SRC_DIR)/*/*/*.c) $(wildcard $(SRC_DIR)/*/*/*/*.c)
 #SRCS =	./src/main.c
@@ -14,7 +14,7 @@ OBJ = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 CFLAGS := -Wall -Wextra -Werror -Iincludes -I/usr/local/lib
 
 #LDFLAGS := -L/usr/local/lib -lmlx -lXext -lX11 -lreadline -lhistory
-LDFLAGS := -Llib -lmlx -lXext -lX11 -lreadline -lhistory
+LDFLAGS := -Llib -lmlx -lXext -lX11 -lreadline -lhistory -lm
 
 RM := rm -f
 
