@@ -34,6 +34,9 @@ static void	mlx_inits(t_all *all)
 	all->libx.max_iterations = 100;
 	all->libx.win_height = 600;
 	all->libx.win_witdh = 600;
+	all->player.rotation_angle = 0;
+	all->player.p_pos_x = all->inp.p_pos_x + 0.5;
+	all->player.p_pos_y = all->inp.p_pos_y + 0.5;
 	all->libx.mlx = mlx_init();
 	if (all->libx.mlx == NULL)
 		mlx_null_free(all); // needs fixing

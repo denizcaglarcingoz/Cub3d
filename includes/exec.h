@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:52:06 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/25 20:35:59 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/27 15:20:16 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,12 @@ typedef struct s_ray
 {
 	double		ray_angle;
 	double		ray_angle_radian;
+	double		ray_dir_x;
+	double		ray_dir_y;
 	double		wall_hit_x;
 	double		wall_hit_y;
 	double		distance;
-	int			was_hit_vertical;
-	int			is_ray_facing_up;
-	int			is_ray_facing_down;
-	int			is_ray_facing_left;
-	int			is_ray_facing_right;
-	int			wall_hit_content;
+	char		wall_hit_side;
 }	t_ray;
 
 typedef struct s_player
@@ -44,6 +41,8 @@ typedef struct s_player
 	double		rotation_angle;
 	double		move_speed;
 	double		rotation_speed;
+	double		p_pos_x;
+	double		p_pos_y;
 }	t_player;
 
 typedef struct s_all
