@@ -38,6 +38,13 @@ static void	mlx_inits(t_all *all)
 	all->player.p_pos_x = all->inp.p_pos_x + 0.5;
 	all->player.p_pos_y = all->inp.p_pos_y + 0.5;
 	all->libx.mlx = mlx_init();
+	all->libx.auto_key = XOpenDisplay(NULL);
+	all->libx.w_pressed = 0;
+	all->libx.a_pressed = 0;
+	all->libx.s_pressed = 0;
+	all->libx.d_pressed = 0;
+	all->libx.left_pressed = 0;
+	all->libx.right_pressed = 0;
 	if (all->libx.mlx == NULL)
 		mlx_null_free(all); // needs fixing
 	all->libx.win = mlx_new_window(all->libx.mlx, all->libx.win_witdh, all->libx.win_height, "Cub3d");
@@ -47,8 +54,13 @@ static void	mlx_inits(t_all *all)
 	if (all->libx.img == NULL)
 		img_null_free(all); // needs fixing
 	exec_main(all);
-	mlx_key_hook(all->libx.win, key_hook, all);
-	mlx_hook(all->libx.win, ClientMessage, StructureNotifyMask, close_window, all);
+	mlx_do_key_autorepeaton(all->libx.mlx);
+	// mlx_key_hook(all->libx.win, key_hook, all);
+	// mlx_loop_hook(all->libx.mlx, key_hook, all);
+	mlx_hook(all->libx.win, KeyPress, KeyPressMask, key_press, all);
+	// mlx_hook(all->libx.win, ClientMessage, StructureNotifyMask, close_window, all);
+	mlx_loop_hook(all->libx.mlx, exec_main, all);
+	mlx_hook(all->libx.win, KeyRelease, KeyReleaseMask, key_release, all);
 	mlx_loop(all->libx.mlx);
 }
 

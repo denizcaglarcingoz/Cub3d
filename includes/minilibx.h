@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 16:08:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/25 17:23:58 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/28 14:25:28 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,19 @@ typedef struct s_mlx
 	void	*win;
 	void	*img;
 	char	*addr;
+	Display *auto_key;
 	int		endian;
 	int		max_iterations;
 	int		win_witdh;
 	int		win_height;
 	int		bits_per_pixel;
 	int		line_length;
+	int		left_pressed;
+	int		right_pressed;
+	int		w_pressed;
+	int		a_pressed;
+	int		s_pressed;
+	int		d_pressed;
 }	t_mlx;
 
 #endif

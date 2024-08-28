@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 15:38:32 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/25 17:58:56 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/28 11:00:05 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # include <sys/time.h>
 # include <errno.h>
 # include <X11/X.h>
+# include <X11/Xlib.h>
 
 # include "exec.h"
 # include "minilibx.h"
