@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/28 14:35:12 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/08/29 15:24:12 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,14 @@ void		element_check_err(char *data, t_inp_data *inp, char *msg);
 /* EXECUTION */
 
 int		exec_main(t_all *inp);
+void	is_key_pressed(t_all *all);
 
 /* MLX ACTIONS */
-// int			key_hook(int key_code, void *param);
+
 int			key_press(int key_code, void *param);
 int			key_release(int key_code, void *param);
-// static void	arrow_move(int key_code, t_all *all);
 int			close_window(t_all *all);
+void		arrow_move(int key_code, t_all *all);
 
 /* GENERAL ERRORS */
 void		malloc_error(void);

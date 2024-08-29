@@ -1,63 +1,5 @@
 #include "libraries.h"
 
-static void	arrow_move(int key_code, t_all *all)
-{
-	// printf("key_code: %d\n", key_code);
-	if (key_code == 119)
-	{
-		if (all->inp.map[(int)(all->player.p_pos_y + ((+0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)]
-			[(int)(all->player.p_pos_x + ((+0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)] != '1')
-		{
-			all->player.p_pos_x +=  (+0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-			all->player.p_pos_y +=  (+0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-		}
-	}
-	else if (key_code == 115)
-	{
-		if (all->inp.map[(int)(all->player.p_pos_y -  ((0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)]
-			[(int)(all->player.p_pos_x -  ((0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)] != '1')
-		{
-			all->player.p_pos_x -=  (0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-			all->player.p_pos_y -=  (0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-		}
-	}
-	else if (key_code == 97)
-	{
-		if (all->inp.map[(int)(all->player.p_pos_y -  ((0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)]
-			[(int)(all->player.p_pos_x -  ((0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
-		{
-			all->player.p_pos_y -=  (0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-			all->player.p_pos_x -=  (0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-		}
-	}
-	else if (key_code == 100)
-	{
-		// destroy_move(all);
-		if (all->inp.map[(int)(all->player.p_pos_y +  ((+0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)]
-			[(int)(all->player.p_pos_x +  ((+0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
-		{
-			all->player.p_pos_y +=  (+0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-			all->player.p_pos_x +=  (+0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-		}
-	}
-	else if (key_code == 65361)
-	{
-		// destroy_move(all);
-		if (all->player.rotation_angle > 0)
-			all->player.rotation_angle -= 0.3;
-		else
-			all->player.rotation_angle = 360;
-	}
-	else if (key_code == 65363)
-	{
-		// destroy_move(all);
-		if (all->player.rotation_angle < 360)
-			all->player.rotation_angle += 0.3;
-		else
-			all->player.rotation_angle = 0; 
-	}
-}
-
 void	get_wall_side(t_all *all)
 {
 	double x;
@@ -120,19 +62,13 @@ void	put_pixel(t_all *all, int pixel_loc)
 	}
 }
 
-
-
 void	exec_lopp(t_all *all, int pixel_loc)
 {
-
 	all->ray.ray_angle_radian = all->ray.ray_angle * (M_PI / 180);
-
 	all->ray.ray_dir_x = cos(all->ray.ray_angle_radian) / 200;
 	all->ray.ray_dir_y = sin(all->ray.ray_angle_radian) / 200;
-	
 	all->ray.wall_hit_x = all->player.p_pos_x;
 	all->ray.wall_hit_y = all->player.p_pos_y;
-	
 	while (all->ray.wall_hit_x < all->inp.map_width && all->ray.wall_hit_y< all->inp.map_height)
 	{
 		if (all->inp.map[(int)all->ray.wall_hit_y][(int)all->ray.wall_hit_x] == '1')
@@ -144,9 +80,9 @@ void	exec_lopp(t_all *all, int pixel_loc)
 		all->ray.wall_hit_y += all->ray.ray_dir_y;
 	}
 	get_distance(all, all->player.p_pos_x, all->player.p_pos_y);
-
 	put_pixel(all, pixel_loc);
 }
+
 int	exec_main(t_all *all)
 {
 	int		i;
@@ -155,19 +91,7 @@ int	exec_main(t_all *all)
 
 	i = 0;
 	fov = 60;
-
-	if (all->libx.w_pressed != 0)
-		arrow_move(119, all);
-	if (all->libx.a_pressed != 0)
-		arrow_move(97, all);
-	if (all->libx.s_pressed != 0)
-		arrow_move(115, all);
-	if (all->libx.d_pressed != 0)
-		arrow_move(100, all);
-	if (all->libx.left_pressed != 0)
-		arrow_move(65361, all);
-	if (all->libx.right_pressed != 0)
-		arrow_move(65363, all);
+	is_key_pressed(all);
 	ray_increment = fov / all->libx.win_witdh;
 	all->ray.ray_angle = all->player.rotation_angle - (fov / 2);
 	while (i < all->libx.win_witdh)

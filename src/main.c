@@ -55,10 +55,7 @@ static void	mlx_inits(t_all *all)
 		img_null_free(all); // needs fixing
 	exec_main(all);
 	mlx_do_key_autorepeaton(all->libx.mlx);
-	// mlx_key_hook(all->libx.win, key_hook, all);
-	// mlx_loop_hook(all->libx.mlx, key_hook, all);
 	mlx_hook(all->libx.win, KeyPress, KeyPressMask, key_press, all);
-	// mlx_hook(all->libx.win, ClientMessage, StructureNotifyMask, close_window, all);
 	mlx_loop_hook(all->libx.mlx, exec_main, all);
 	mlx_hook(all->libx.win, KeyRelease, KeyReleaseMask, key_release, all);
 	mlx_loop(all->libx.mlx);
