@@ -16,10 +16,10 @@ void	destroy_move(t_all *all)
 	mlx_clear_window(all->libx.mlx, all->libx.win);
 }
 
-// w = 119
-// a = 97
-// s = 115
-// d = 100
+// w = 119			
+// a = 97			
+// s = 115			
+// d = 100			
 
 void	is_key_pressed(t_all *all)
 {
