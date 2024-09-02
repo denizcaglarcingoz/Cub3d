@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/30 21:31:12 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/02 16:36:13 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,9 @@ void		element_check_err(char *data, t_inp_data *inp, char *msg);
 
 int		exec_main(t_all *inp);
 void	is_key_pressed(t_all *all);
+
+void	init_texture(t_all *all);
+void	put_texture(t_all *all, int px_loc);
 
 /* MLX ACTIONS */
 

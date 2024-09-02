@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:52:06 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/08/27 15:20:16 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/02 15:57:30 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,26 @@ typedef struct s_player
 	double		p_pos_y;
 }	t_player;
 
+typedef struct s_tex
+{
+	int 	width;
+	int 	height;
+	void 	*img;
+	int 	*data;
+	int 	line_length;
+} t_tex;
+
+
 typedef struct s_all
 {
 	t_player player;
 	t_ray	ray;
 	t_mlx	libx;
 	t_inp_data	inp;
+	t_tex	tex_no;
+	t_tex	tex_so;
+	t_tex	tex_we;
+	t_tex	tex_ea;
 } t_all;
 
 #endif
