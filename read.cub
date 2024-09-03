@@ -1,11 +1,20 @@
+WE /home/bassem/Downloads/Cub3d/texture/SO.xpm
+SO /home/bassem/Downloads/Cub3d/texture/SO.xpm
+EA /home/bassem/Downloads/Cub3d/texture/WE.xpm
+NO /home/bassem/Downloads/Cub3d/texture/WE.xpm
 
+F255,2,02    
+C 0,0,255    
 
-  WE ./path_to_the_west_texture
-NO         
-      SO ./path_to_the_south_texture
- EaA ./path_to_the_east_texture
-F 220,100,0
-C 225,30,0
-111111111111111111111111
-100000000000000000000001
-111111111111111111111111
+11111111111111
+10000000000001
+10000000000001
+10000000000001
+10000000000001
+10000000000001
+10000000001001
+10000110000001
+10000000001001
+100N0001000001
+10000000000001
+11111111111111

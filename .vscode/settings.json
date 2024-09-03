@@ -1,6 +1,26 @@
 {
 	"files.associations": {
 		"mlx.h": "c",
-		"libraries.h": "c"
+		"libraries.h": "c",
+		"string.h": "c",
+		"stdlib.h": "c",
+		"stdio.h": "c",
+		"libft.h": "c",
+		"unistd.h": "c",
+		"array": "c",
+		"string_view": "c",
+		"initializer_list": "c",
+		"ranges": "c",
+		"utility": "c",
+		"string": "c",
+		"functions.h": "c",
+		"minilibx.h": "c",
+		"inp_data.h": "c",
+		"exec.h": "c",
+		"time.h": "c",
+		"math.h": "c",
+		"stat.h": "c",
+		"fcntl.h": "c",
+		"errno.h": "c"
 	}
 }
