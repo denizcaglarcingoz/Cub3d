@@ -31,34 +31,35 @@ void	free_all(t_all *all)
 
 static void	mlx_inits(t_all *all)
 {
-	all->libx.max_iterations = 100;
-	all->libx.win_height = 600;
-	all->libx.win_witdh = 600;
-	all->player.rotation_angle = 0;
-	all->player.p_pos_x = all->inp.p_pos_x + 0.5;
-	all->player.p_pos_y = all->inp.p_pos_y + 0.5;
-	all->libx.mlx = mlx_init();
-	all->libx.auto_key = XOpenDisplay(NULL);
-	all->libx.w_pressed = 0;
-	all->libx.a_pressed = 0;
-	all->libx.s_pressed = 0;
-	all->libx.d_pressed = 0;
-	all->libx.left_pressed = 0;
-	all->libx.right_pressed = 0;
-	if (all->libx.mlx == NULL)
-		mlx_null_free(all); // needs fixing
-	all->libx.win = mlx_new_window(all->libx.mlx, all->libx.win_witdh, all->libx.win_height, "Cub3d");
-	if (all->libx.win == NULL)
-		free_all(all); // needs fixing
-	all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
-	if (all->libx.img == NULL)
-		img_null_free(all); // needs fixing
-	exec_main(all);
-	mlx_do_key_autorepeaton(all->libx.mlx);
-	mlx_hook(all->libx.win, KeyPress, KeyPressMask, key_press, all);
-	mlx_loop_hook(all->libx.mlx, exec_main, all);
-	mlx_hook(all->libx.win, KeyRelease, KeyReleaseMask, key_release, all);
-	mlx_loop(all->libx.mlx);
+    all->libx.max_iterations = 100;
+    all->libx.win_height = 600;
+    all->libx.win_witdh = 600;
+    all->player.rotation_angle = 0;
+    all->player.p_pos_x = all->inp.p_pos_x + 0.5;
+    all->player.p_pos_y = all->inp.p_pos_y + 0.5;
+    all->libx.mlx = mlx_init();
+    all->libx.auto_key = XOpenDisplay(NULL);
+    all->libx.w_pressed = 0;
+    all->libx.a_pressed = 0;
+    all->libx.s_pressed = 0;
+    all->libx.d_pressed = 0;
+    all->libx.left_pressed = 0;
+    all->libx.right_pressed = 0;
+    if (all->libx.mlx == NULL)
+        mlx_null_free(all); // needs fixing
+    all->libx.win = mlx_new_window(all->libx.mlx, all->libx.win_witdh, all->libx.win_height, "Cub3d");
+    if (all->libx.win == NULL)
+        free_all(all); // needs fixing
+    all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
+    if (all->libx.img == NULL)
+        img_null_free(all); // needs fixing
+    all->libx.addr = mlx_get_data_addr(all->libx.img, &all->libx.bits_per_pixel, &all->libx.line_length, &all->libx.endian);
+    exec_main(all);
+    mlx_do_key_autorepeaton(all->libx.mlx);
+    mlx_hook(all->libx.win, KeyPress, KeyPressMask, key_press, all);
+    mlx_loop_hook(all->libx.mlx, exec_main, all);
+    mlx_hook(all->libx.win, KeyRelease, KeyReleaseMask, key_release, all);
+    mlx_loop(all->libx.mlx);
 }
 
 int main(int argc, char **argv)
