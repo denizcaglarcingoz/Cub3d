@@ -5,6 +5,7 @@ void	get_wall_side(t_all *all)
 	double x;
 	double y;
 
+	(void)y;
 	x = (int)(all->ray.wall_hit_x - all->ray.ray_dir_x);
 	y = (int)(all->ray.wall_hit_y - all->ray.ray_dir_y); 
 	if (x == (int)all->ray.wall_hit_x)
@@ -80,7 +81,6 @@ void	exec_lopp(t_all *all, int pixel_loc)
 		all->ray.wall_hit_y += all->ray.ray_dir_y;
 	}
 	get_distance(all, all->player.p_pos_x, all->player.p_pos_y);
-	init_texture(all);
 	put_texture(all, pixel_loc);
 	// put_pixel(all, pixel_loc);
 }

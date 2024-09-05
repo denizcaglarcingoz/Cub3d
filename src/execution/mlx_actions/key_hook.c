@@ -56,8 +56,8 @@ int	key_press(int key_code, void *param)
 		all->libx.left_pressed = 65361;
 	if (key_code == 65363)
 		all->libx.right_pressed = 65363;
-	mlx_destroy_image(all->libx.mlx, all->libx.img);
-	all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
+	//mlx_destroy_image(all->libx.mlx, all->libx.img);
+	//all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
 	return 	(0);
 }
 

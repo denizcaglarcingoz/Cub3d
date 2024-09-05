@@ -53,6 +53,7 @@ static void	mlx_inits(t_all *all)
 	all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
 	if (all->libx.img == NULL)
 		img_null_free(all); // needs fixing
+    init_texture(all);
 	exec_main(all);
 	mlx_do_key_autorepeaton(all->libx.mlx);
 	mlx_hook(all->libx.win, KeyPress, KeyPressMask, key_press, all);
