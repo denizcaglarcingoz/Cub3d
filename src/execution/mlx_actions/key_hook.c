@@ -45,19 +45,37 @@ int	key_press(int key_code, void *param)
 	if (key_code == 65307)
 		close_window (all);
 	if (key_code == 119)
+	{
 		all->libx.w_pressed  = 119;
+		all->has_move = 1;
+	}
 	if (key_code == 97)
+	{
 		all->libx.a_pressed = 97;
+		all->has_move = 1;
+	}
 	if (key_code == 115)
+	{
 		all->libx.s_pressed = 115;
+		all->has_move = 1;
+	}
 	if (key_code == 100)
+	{
+		all->has_move = 1;
 		all->libx.d_pressed = 100;
+	}
 	if (key_code == 65361)
+	{
 		all->libx.left_pressed = 65361;
+		all->has_move = 1;
+	}
 	if (key_code == 65363)
+	{
 		all->libx.right_pressed = 65363;
-	mlx_destroy_image(all->libx.mlx, all->libx.img);
-	all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
+		all->has_move = 1;
+	}
+	//mlx_destroy_image(all->libx.mlx, all->libx.img);
+	//all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
 	return 	(0);
 }
 

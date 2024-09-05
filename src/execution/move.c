@@ -2,43 +2,58 @@
 
 void	w_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y + ((+0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x + ((+0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)] != '1')
+	// Use player move speed instead of hardcoded values
+	double	move_step = all->player.move_speed * cos(all->player.rotation_angle * (M_PI / 180)) * 0.3;
+	double	new_x = all->player.p_pos_x + move_step;
+	double	new_y = all->player.p_pos_y + all->player.move_speed * sin(all->player.rotation_angle * (M_PI / 180)) * 0.3;
+
+	// Check if the new position is not hitting a wall ('1')
+	if (all->inp.map[(int)new_y][(int)new_x] != '1')
 	{
-		all->player.p_pos_x +=  (+0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-		all->player.p_pos_y +=  (+0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x = new_x;
+		all->player.p_pos_y = new_y;
 	}
 }
 
 void	s_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y -  ((0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x -  ((0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)] != '1')
+	double	move_step = all->player.move_speed * cos(all->player.rotation_angle * (M_PI / 180)) * 0.3;
+	double	new_x = all->player.p_pos_x - move_step;
+	double	new_y = all->player.p_pos_y - all->player.move_speed * sin(all->player.rotation_angle * (M_PI / 180)) * 0.3;
+
+	if (all->inp.map[(int)new_y][(int)new_x] != '1')
 	{
-		all->player.p_pos_x -=  (0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-		all->player.p_pos_y -=  (0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x = new_x;
+		all->player.p_pos_y = new_y;
 	}
 }
 
 void	a_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y -  ((0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x -  ((0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
+	double	move_step = all->player.move_speed * cos((all->player.rotation_angle + 90) * (M_PI / 180)) * 0.3;
+	double	new_x = all->player.p_pos_x - move_step;
+	double	new_y = all->player.p_pos_y - all->player.move_speed * sin((all->player.rotation_angle + 90) * (M_PI / 180)) * 0.3;
+
+	if (all->inp.map[(int)new_y][(int)new_x] != '1')
 	{
-		all->player.p_pos_y -=  (0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-		all->player.p_pos_x -=  (0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x = new_x;
+		all->player.p_pos_y = new_y;
 	}
 }
 
 void	d_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y +  ((0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x +  ((0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
+	double	move_step = all->player.move_speed * cos((all->player.rotation_angle + 90) * (M_PI / 180)) * 0.3;
+	double	new_x = all->player.p_pos_x + move_step;
+	double	new_y = all->player.p_pos_y + all->player.move_speed * sin((all->player.rotation_angle + 90) * (M_PI / 180)) * 0.3;
+
+	if (all->inp.map[(int)new_y][(int)new_x] != '1')
 	{
-		all->player.p_pos_y +=  (0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-		all->player.p_pos_x +=  (0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x = new_x;
+		all->player.p_pos_y = new_y;
 	}
 }
+
 
 void	arrow_move(int key_code, t_all *all)
 {

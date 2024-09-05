@@ -65,6 +65,7 @@ typedef struct s_all
 	t_tex	tex_so;
 	t_tex	tex_we;
 	t_tex	tex_ea;
+	int		has_move;
 } t_all;
 
 #endif

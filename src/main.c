@@ -37,6 +37,7 @@ static void	mlx_inits(t_all *all)
     all->player.rotation_angle = 0;
     all->player.p_pos_x = all->inp.p_pos_x + 0.5;
     all->player.p_pos_y = all->inp.p_pos_y + 0.5;
+    all->player.move_speed = 1.5;
     all->libx.mlx = mlx_init();
     all->libx.auto_key = XOpenDisplay(NULL);
     all->libx.w_pressed = 0;

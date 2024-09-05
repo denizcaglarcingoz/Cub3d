@@ -52,17 +52,17 @@ void	exec_lopp(t_all *all, int pixel_loc)
 		all->ray.wall_hit_y += all->ray.ray_dir_y;
 	}
 	get_distance(all, all->player.p_pos_x, all->player.p_pos_y);
-	init_texture(all);
+	
 	put_texture(all, pixel_loc);
 	// put_pixel(all, pixel_loc);
 }
 
-// static void init_image(t_all *all) {
-// 	all->libx.img = NULL;
-// 	all->libx.addr = NULL;
-//     all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
-//     all->libx.addr = mlx_get_data_addr(all->libx.img, &all->libx.bits_per_pixel, &all->libx.line_length, &all->libx.endian);
-// }
+static void init_image(t_all *all) {
+	all->libx.img = NULL;
+	all->libx.addr = NULL;
+    all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
+    all->libx.addr = mlx_get_data_addr(all->libx.img, &all->libx.bits_per_pixel, &all->libx.line_length, &all->libx.endian);
+}
 
 int	exec_main(t_all *all)
 {
@@ -72,18 +72,30 @@ int	exec_main(t_all *all)
 
 	i = 0;
 	fov = 60;
+	if (all->has_move == 0)
+	{
+		return 0;
+	}
 	is_key_pressed(all);
 	//mlx_clear_window(all->libx.mlx, all->libx.win);
-    //mlx_destroy_image(all->libx.mlx, all->libx.img);
-    //init_image(all);
+	if (all->libx.img)
+	{
+		mlx_destroy_image(all->libx.mlx, all->libx.img);
+		//free(all->libx.img);
+		//free(all->libx.addr);
+	}
+    init_image(all);
 	ray_increment = fov / all->libx.win_witdh;
 	all->ray.ray_angle = all->player.rotation_angle - (fov / 2);
+	
 	while (i < all->libx.win_witdh)
 	{
+		init_texture(all);
 		exec_lopp(all, i);
 		all->ray.ray_angle += ray_increment;
 		i++;
 	}
+	all->has_move = 0;
 	mlx_put_image_to_window(all->libx.mlx, all->libx.win, all->libx.img, 0, 0);
 	return (0);
 }
