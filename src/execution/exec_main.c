@@ -85,22 +85,33 @@ void	exec_lopp(t_all *all, int pixel_loc)
 	// put_pixel(all, pixel_loc);
 }
 
-int	exec_main(t_all *all)
-{
-	int		i;
-	double	fov;
-	double	ray_increment;
+static void init_image(t_all *all) {
+    int bpp, size_line, endian;
+    all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
+    all->libx.addr = mlx_get_data_addr(all->libx.img, &bpp, &size_line, &endian);
+    all->libx.bits_per_pixel = bpp;
+    all->libx.line_length = size_line;
+    all->libx.endian = endian;
+}
 
-	i = 0;
-	fov = 60;
-	is_key_pressed(all);
-	ray_increment = fov / all->libx.win_witdh;
-	all->ray.ray_angle = all->player.rotation_angle - (fov / 2);
-	while (i < all->libx.win_witdh)
-	{
-		exec_lopp(all, i);
-		all->ray.ray_angle += ray_increment;
-		i++;
-	}
-	return (0);
+int exec_main(t_all *all) {
+    int i;
+    double fov;
+    double ray_increment;
+
+    i = 0;
+    fov = 60;
+    is_key_pressed(all);
+    if (all->libx.img)
+        mlx_destroy_image(all->libx.mlx, all->libx.img);
+    init_image(all);
+    ray_increment = fov / all->libx.win_witdh;
+    all->ray.ray_angle = all->player.rotation_angle - (fov / 2);
+    while (i < all->libx.win_witdh) {
+        exec_lopp(all, i);
+        all->ray.ray_angle += ray_increment;
+        i++;
+    }
+    mlx_put_image_to_window(all->libx.mlx, all->libx.win, all->libx.img, 0, 0);
+    return (0);
 }

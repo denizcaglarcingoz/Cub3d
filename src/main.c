@@ -29,6 +29,15 @@ void	free_all(t_all *all)
 	exit(EXIT_FAILURE);
 }
 
+static void init_image(t_all *all) {
+    int bpp, size_line, endian;
+    all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
+    all->libx.addr = mlx_get_data_addr(all->libx.img, &bpp, &size_line, &endian);
+    all->libx.bits_per_pixel = bpp;
+    all->libx.line_length = size_line;
+    all->libx.endian = endian;
+}
+
 static void	mlx_inits(t_all *all)
 {
 	all->libx.max_iterations = 100;
@@ -53,6 +62,7 @@ static void	mlx_inits(t_all *all)
 	all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
 	if (all->libx.img == NULL)
 		img_null_free(all); // needs fixing
+    init_image(all);
     init_texture(all);
 	exec_main(all);
 	mlx_do_key_autorepeaton(all->libx.mlx);
