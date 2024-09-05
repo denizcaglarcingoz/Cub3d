@@ -3,13 +3,32 @@
 void	init_texture(t_all *all)
 {
 	all->tex_no.img = mlx_xpm_file_to_image(all->libx.mlx, all->inp.no_path, &all->tex_no.width, &all->tex_no.height);
-	all->tex_no.data = (int *)mlx_get_data_addr(all->tex_no.img, &all->tex_no.line_length, &all->tex_no.line_length, &all->tex_no.line_length);
-	all->tex_so.img = mlx_xpm_file_to_image(all->libx.mlx, all->inp.so_path, &all->tex_so.width, &all->tex_so.height);
-	all->tex_so.data = (int *)mlx_get_data_addr(all->tex_so.img, &all->tex_so.line_length, &all->tex_so.line_length, &all->tex_so.line_length);
-	all->tex_ea.img = mlx_xpm_file_to_image(all->libx.mlx, all->inp.ea_path, &all->tex_ea.width, &all->tex_ea.height);
-	all->tex_ea.data = (int *)mlx_get_data_addr(all->tex_ea.img, &all->tex_ea.line_length, &all->tex_ea.line_length, &all->tex_ea.line_length);
-	all->tex_we.img = mlx_xpm_file_to_image(all->libx.mlx, all->inp.we_path, &all->tex_we.width, &all->tex_we.height);
-	all->tex_we.data = (int *)mlx_get_data_addr(all->tex_we.img, &all->tex_we.line_length, &all->tex_we.line_length, &all->tex_we.line_length);
+    all->tex_no.data = (int *)mlx_get_data_addr(all->tex_no.img, &all->tex_no.line_length, &all->tex_no.line_length, &all->tex_no.line_length);
+	if (all->tex_no.data == NULL || all->tex_no.img == NULL)
+        clean_exit(all, 1);
+    all->tex_so.img = mlx_xpm_file_to_image(all->libx.mlx, all->inp.so_path, &all->tex_so.width, &all->tex_so.height);
+    all->tex_so.data = (int *)mlx_get_data_addr(all->tex_so.img, &all->tex_so.line_length, &all->tex_so.line_length, &all->tex_so.line_length);
+	if (all->tex_so.data == NULL || all->tex_so.img == NULL)
+        clean_exit(all, 1);
+    all->tex_ea.img = mlx_xpm_file_to_image(all->libx.mlx, all->inp.ea_path, &all->tex_ea.width, &all->tex_ea.height);
+    all->tex_ea.data = (int *)mlx_get_data_addr(all->tex_ea.img, &all->tex_ea.line_length, &all->tex_ea.line_length, &all->tex_ea.line_length);
+	if (all->tex_ea.data == NULL || all->tex_ea.img == NULL)
+        clean_exit(all, 1);
+    all->tex_we.img = mlx_xpm_file_to_image(all->libx.mlx, all->inp.we_path, &all->tex_we.width, &all->tex_we.height);
+    all->tex_we.data = (int *)mlx_get_data_addr(all->tex_we.img, &all->tex_we.line_length, &all->tex_we.line_length, &all->tex_we.line_length);
+    if (all->tex_we.data == NULL || all->tex_we.img == NULL)
+        clean_exit(all, 1);
+}
+
+void init_image(t_all *all) 
+{
+    all->libx.img = mlx_new_image(all->libx.mlx, all->libx.win_witdh, all->libx.win_height);
+    if (all->libx.img == NULL)
+        clean_exit(all, 1);
+    all->libx.addr = mlx_get_data_addr(all->libx.img, &all->libx.bits_per_pixel,
+        &all->libx.line_length, &all->libx.endian);
+    if (all->libx.addr == NULL)
+        clean_exit(all, 1);
 }
 
 static void put_pixel_to_image(t_all *all, int x, int y, int color) {

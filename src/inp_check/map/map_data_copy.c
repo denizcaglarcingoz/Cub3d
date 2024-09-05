@@ -24,5 +24,4 @@ void	map_data_copy(char *data, int i, t_inp_data *inp)
 		i++;
 		k++;
 	}
-	print_d_str(inp->map);
 }

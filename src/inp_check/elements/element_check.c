@@ -24,7 +24,6 @@ void	element_find(char *data, int *i, t_inp_data *inp)
 	}
 	else
 	{
-		printf("Sdata[*i] = %c\n", data[*i]);
 		if (c_check != 1 || p_check != 1)
 			element_check_err(data, inp, "element error");
 		if (data[*i] != '1')

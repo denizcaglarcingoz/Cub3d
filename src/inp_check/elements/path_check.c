@@ -22,8 +22,6 @@ char	*get_path(char *data, int *i, int *checks)
 		return (NULL);
 	}
 	*i = j;
-	printf("path = '%s'\n", path);
-	printf("data[*i] = %c\n", data[*i]);
 	return (path);
 }
 

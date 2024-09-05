@@ -21,8 +21,6 @@ char	*color_data_get(char *data, int *i)
 		return (NULL);
 	}
 	*i = j;
-	printf("path = '%s'\n", color);
-	printf("data[*i] = %c\n", data[*i]);
 	return (color);
 }
 

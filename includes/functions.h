@@ -67,6 +67,7 @@ int		exec_main(t_all *inp);
 void	is_key_pressed(t_all *all);
 
 void	init_texture(t_all *all);
+void    init_image(t_all *all);
 void	put_texture(t_all *all, int px_loc);
 
 /* MLX ACTIONS */
@@ -78,6 +79,8 @@ void		arrow_move(int key_code, t_all *all);
 
 /* GENERAL ERRORS */
 void		malloc_error(void);
+void	    clean_exit(t_all *data, int checker);
+int         ft_exit(t_all *data);
 
 /* TESTS */
 void		print_d_str(char **data);
