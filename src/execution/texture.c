@@ -2,6 +2,8 @@
 
 void	init_image(t_all *all)
 {
+	if (all->libx.img)
+		(mlx_destroy_image(all->libx.mlx, all->libx.img), all->libx.img = NULL);
 	all->libx.img = mlx_new_image(all->libx.mlx,
 			all->libx.win_witdh, all->libx.win_height);
 	if (all->libx.img == NULL)

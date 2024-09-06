@@ -24,7 +24,6 @@ char	*ft_strjoin_data(char *s1, char const *s2)
 	}
 	result[i] = '\0';
 	free(s1);
-	s1 = NULL;
 	return (result);
 }
 
@@ -50,8 +49,6 @@ char	*get_file_data(char *file_name)
 			(close(fd), free(line), malloc_error());
 		free(line);
 	}
-	if (line)
-		free(line);
 	close(fd);
 	return (content);
 }

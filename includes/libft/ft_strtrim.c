@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/05 17:16:51 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/08/15 16:20:58 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/17 10:04:46 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	isset(char c, const char *s)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char *s1, char const *set)
 {
 	size_t	j;
 	char	*s12;
@@ -45,7 +45,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 	while (s1[t] != '\0' && is_white_space(s1[t]))
 		t++;
 	if (s1[t] == '\0')
-		return (ft_strdup(""));
+		return (s1);
 	if (!set)
 		return (ft_strdup(s1));
 	s12 = (char *)s1;
@@ -54,7 +54,7 @@ char	*ft_strtrim(char const *s1, char const *set)
 		t++;
 	while (isset(s12[j], set) && s12[j])
 		j--;
-	return (j++, result = ft_substr(s12, t, j - t), result);
+	return (j++, result = ft_substr(s12, t, j - t), free(s1), result);
 }
 /*
 int main()

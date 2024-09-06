@@ -65,8 +65,6 @@ int	exec_main(t_all *all)
 	i = 0;
 	fov = 60;
 	is_key_pressed(all);
-	if (all->libx.img)
-		mlx_destroy_image(all->libx.mlx, all->libx.img);
 	init_image(all);
 	ray_increment = fov / all->libx.win_witdh;
 	all->ray.ray_angle = all->player.rotation_angle - (fov / 2);

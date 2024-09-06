@@ -9,8 +9,7 @@ void	inp_check_main(char *file_name, t_inp_data *inp)
 	if (!data)
 		malloc_error();
 	data_check(data, inp);
+	free(data);
 	set_p_pos(inp);
 	color_set(inp);
-	free(data);
-	data = NULL;
 }

@@ -12,71 +12,90 @@
 
 #include "libft.h"
 
-static int	numwords(char const *s, char c)
+static size_t	str_count(char *str, char c)
 {
-	int	cur;
-	int	word_num;
+	size_t	i;
+	size_t	count;
+	int		in_word;
 
-	cur = 0;
-	word_num = 0;
-	while (s[cur] != 0)
+	i = 0;
+	count = 0;
+	in_word = 0;
+	while (str[i])
 	{
-		if (s[cur] != c && (s[cur + 1] == c || s[cur + 1] == 0))
-			word_num++;
-		cur++;
-	}
-	return (word_num);
-}
-
-static int	split_words(char **result, char const *s, char c, int word)
-{
-	int		start_cur;
-	int		end_cur;
-
-	end_cur = 0;
-	start_cur = 0;
-	while (s[end_cur])
-	{
-		if (s[end_cur] == c || s[end_cur] == 0)
-			start_cur = end_cur + 1;
-		if (s[end_cur] != c && (s[end_cur + 1] == c || s[end_cur + 1] == 0))
+		if (str[i] == c)
+			in_word = 0;
+		else if (!in_word)
 		{
-			result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
-			if (!result[word])
-			{
-				while (word++)
-					free(result[word]);
-				return (0);
-			}
-			ft_strlcpy(result[word], (s + start_cur), end_cur - start_cur + 2);
-			word++;
+			in_word = 1;
+			count++;
 		}
-		end_cur++;
+		i++;
 	}
-	result[word] = 0;
-	return (1);
+	return (count);
 }
 
-char	**ft_split(char const *s, char c)
+static void	makes_free(char **strs, size_t j)
 {
-	char	**result;
-
-	if (!s)
-		return (0);
-	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
-	if (!result)
-		return (0);
-	if (!split_words(result, s, c, 0))
-		return (free(result), NULL);
-	return (result);
+	while (j)
+	{
+		free(strs[j - 1]);
+		j--;
+	}
+	free(strs);
 }
 
-/*#include <stdio.h>
-int main()
+static char	**ft_allocate(char **split, const char *s, char c)
 {
-	char *to_split = "hello word";
-	char spilt = "hello";
+	size_t	j;
+	char	*start;
 
-	char *r = ft_spilt(to_split,spilt);
-	printf("the spilted string is : %s", r);
+	j = 0;
+	while (*s)
+	{
+		while (*s == c)
+			s++;
+		if (*s)
+		{
+			start = (char *)s;
+			while (*s && *s != c)
+				s++;
+			split[j] = ft_substr(start, 0, s - start);
+			if (split[j] == NULL)
+			{
+				makes_free(split, j);
+				return (NULL);
+			}
+			j++;
+		}
+	}
+	split[j] = NULL;
+	return (split);
+}
+
+char	**ft_split(const char *s, char c)
+{
+	size_t	count;
+	char	**split;
+
+	count = str_count((char *)s, c);
+	split = (char **)malloc(((count + 1) * sizeof (char *)));
+	if (split == NULL)
+		return (NULL);
+	split = ft_allocate(split, s, c);
+	return (split);
+}
+/*int	main(void)
+{
+	char const	*str = "hello!";
+	char	**result = ft_split(str, ' ');
+	int		i = 0;
+	while (result[i])
+	{
+		printf("%s\n", result[i]);
+		free (result[i]);
+		i++;
+	}
+    free (result);
+	return (0);
 }*/

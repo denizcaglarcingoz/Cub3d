@@ -35,8 +35,21 @@ void	init_tex_fail(t_all *all)
 		clean_exit(all, 1);
 }
 
+void	init_to_null(t_all *all)
+{
+	all->tex_no.img = NULL;
+	all->tex_no.data = NULL;
+	all->tex_so.img = NULL;
+	all->tex_so.data = NULL;
+	all->tex_ea.img = NULL;
+	all->tex_ea.data = NULL;
+	all->tex_we.img = NULL;
+	all->tex_we.data = NULL;
+}
+
 void	init_texture(t_all *all)
 {
+	init_to_null(all);
 	all->tex_no.img = mlx_xpm_file_to_image(all->libx.mlx,
 			all->inp.no_path, &all->tex_no.width, &all->tex_no.height);
 	all->tex_no.data = (int *)mlx_get_data_addr(all->tex_no.img,
