@@ -1,27 +1,32 @@
 #include "libraries.h"
 
-void	get_wall_side(t_all *all)
+void get_wall_side(t_all *all)
 {
-	double x;
-	double y;
+    double x;
+    double y;
 
-	(void)y;
-	x = (int)(all->ray.wall_hit_x - all->ray.ray_dir_x);
-	y = (int)(all->ray.wall_hit_y - all->ray.ray_dir_y); 
-	if (x == (int)all->ray.wall_hit_x)
-	{
-		if (all->ray.ray_angle_radian > 0 && all->ray.ray_angle_radian < M_PI)
-			all->ray.wall_hit_side = 'N';
-		else
-			all->ray.wall_hit_side = 'S';
-	}
-	else
-	{
-		if (all->ray.ray_angle_radian > M_PI / 2 && all->ray.ray_angle_radian < 3 * M_PI / 2)
-			all->ray.wall_hit_side = 'E';
-		else
-			all->ray.wall_hit_side = 'W';
-	}
+    (void)y;
+    x = (int)(all->ray.wall_hit_x - all->ray.ray_dir_x);
+    y = (int)(all->ray.wall_hit_y - all->ray.ray_dir_y);
+
+    double angle = fmod(all->ray.ray_angle_radian, 2 * M_PI);
+    if (angle < 0) {
+        angle += 2 * M_PI;
+    }
+    if (x == (int)all->ray.wall_hit_x)
+    {
+        if (angle > 0 && angle < M_PI)
+            all->ray.wall_hit_side = 'N';
+        else
+            all->ray.wall_hit_side = 'S';
+    }
+    else
+    {
+        if (angle > M_PI / 2 && angle < 3 * M_PI / 2)
+            all->ray.wall_hit_side = 'E';
+        else
+            all->ray.wall_hit_side = 'W';
+    }
 }
 
 void	get_distance(t_all *all, double p_pos_x, double p_pos_y)
