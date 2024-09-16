@@ -23,8 +23,8 @@ int	color_num_rules(char *color)
 	if (ft_atoi(num_one) < 0 || ft_atoi(num_one) > 255
 		|| ft_atoi(num_two) < 0 || ft_atoi(num_two) > 255
 		|| ft_atoi(num_three) < 0 || ft_atoi(num_three) > 255)
-		return (1);
-	return (0);
+		return (free(num_one), free(num_two), free(num_three), 1);
+	return (free(num_one), free(num_two), free(num_three), 0);
 }
 
 void	color_num_check(char *data, t_inp_data *inp)
