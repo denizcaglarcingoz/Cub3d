@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:52:06 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/16 18:43:11 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/16 19:35:20 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,11 @@ typedef struct s_player
 
 typedef struct s_tex
 {
-	int 	width;
-	int 	height;
-	void 	*img;
-	int 	*data;
-	int 	line_length;
+	int		width;
+	int		height;
+	void	*img;
+	int		*data;
+	int		line_length;
 }	t_tex;
 
 typedef struct s_texture_info
@@ -66,18 +66,16 @@ typedef struct s_texture_info
 	int		tex_loc_w;
 }	t_texture_info;
 
-
-
 typedef struct s_all
 {
-	t_player player;
-	t_ray	ray;
-	t_mlx	libx;
+	t_player	player;
+	t_ray		ray;
+	t_mlx		libx;
 	t_inp_data	inp;
-	t_tex	tex_no;
-	t_tex	tex_so;
-	t_tex	tex_we;
-	t_tex	tex_ea;
-} t_all;
+	t_tex		tex_no;
+	t_tex		tex_so;
+	t_tex		tex_we;
+	t_tex		tex_ea;
+}	t_all;
 
 #endif

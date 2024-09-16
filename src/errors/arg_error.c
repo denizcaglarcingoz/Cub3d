@@ -1,4 +1,3 @@
-
 #include "libraries.h"
 
 void	arg_error(void)
