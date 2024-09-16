@@ -11,4 +11,6 @@ void	inp_check_main(char *file_name, t_inp_data *inp)
 	data_check(data, inp);
 	set_p_pos(inp);
 	color_set(inp);
+	free(data);
+	data = NULL;
 }

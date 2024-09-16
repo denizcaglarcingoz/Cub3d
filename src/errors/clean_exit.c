@@ -10,6 +10,7 @@ static void	free_map(char **map)
 		free(map[i]);
 		i++;
 	}
+	//free(map);
 }
 
 static void	free_textures(t_all *data)
@@ -54,6 +55,7 @@ void	clean_exit(t_all *data, int checker)
 		if (data->libx.mlx)
 		{
 			free(data->libx.mlx);
+			data->libx.mlx = NULL;
 		}
 	}
 	if (data->libx.img)

@@ -12,4 +12,22 @@ void	inp_data_free(t_inp_data *inp)
 		free(inp->we_path);
 	if (inp->map)
 		free(inp->map);
+	if (inp->ceiling_color_data)
+		free(inp->ceiling_color_data);
+	if (inp->floor_color_data)
+		free(inp->floor_color_data);
+	
+}
+
+void	free_split(char **split)
+{
+	int	i;
+
+	i = 0;
+	while (split[i])
+	{
+		free(split[i]);
+		i++;
+	}
+	free(split);
 }

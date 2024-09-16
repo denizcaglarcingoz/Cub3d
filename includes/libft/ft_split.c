@@ -12,90 +12,71 @@
 
 #include "libft.h"
 
-static size_t	str_count(char *str, char c)
+static int	numwords(char const *s, char c)
 {
-	size_t	i;
-	size_t	count;
-	int		in_word;
+	int	cur;
+	int	word_num;
 
-	i = 0;
-	count = 0;
-	in_word = 0;
-	while (str[i])
+	cur = 0;
+	word_num = 0;
+	while (s[cur] != 0)
 	{
-		if (str[i] == c)
-			in_word = 0;
-		else if (!in_word)
-		{
-			in_word = 1;
-			count++;
-		}
-		i++;
+		if (s[cur] != c && (s[cur + 1] == c || s[cur + 1] == 0))
+			word_num++;
+		cur++;
 	}
-	return (count);
+	return (word_num);
 }
 
-static void	makes_free(char **strs, size_t j)
+static int	split_words(char **result, char const *s, char c, int word)
 {
-	while (j)
-	{
-		free(strs[j - 1]);
-		j--;
-	}
-	free(strs);
-}
+	int		start_cur;
+	int		end_cur;
 
-static char	**ft_allocate(char **split, const char *s, char c)
-{
-	size_t	j;
-	char	*start;
-
-	j = 0;
-	while (*s)
+	end_cur = 0;
+	start_cur = 0;
+	while (s[end_cur])
 	{
-		while (*s == c)
-			s++;
-		if (*s)
+		if (s[end_cur] == c || s[end_cur] == 0)
+			start_cur = end_cur + 1;
+		if (s[end_cur] != c && (s[end_cur + 1] == c || s[end_cur + 1] == 0))
 		{
-			start = (char *)s;
-			while (*s && *s != c)
-				s++;
-			split[j] = ft_substr(start, 0, s - start);
-			if (split[j] == NULL)
+			result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
+			if (!result[word])
 			{
-				makes_free(split, j);
-				return (NULL);
+				while (word++)
+					free(result[word]);
+				return (0);
 			}
-			j++;
+			ft_strlcpy(result[word], (s + start_cur), end_cur - start_cur + 2);
+			word++;
 		}
+		end_cur++;
 	}
-	split[j] = NULL;
-	return (split);
+	result[word] = 0;
+	return (1);
 }
 
-char	**ft_split(const char *s, char c)
+char	**ft_split(char const *s, char c)
 {
-	size_t	count;
-	char	**split;
+	char	**result;
 
-	count = str_count((char *)s, c);
-	split = (char **)malloc(((count + 1) * sizeof (char *)));
-	if (split == NULL)
-		return (NULL);
-	split = ft_allocate(split, s, c);
-	return (split);
+	if (!s)
+		return (0);
+	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
+	if (!result)
+		return (0);
+	if (!split_words(result, s, c, 0))
+		return (free(result), NULL);
+	return (result);
 }
-/*int	main(void)
+
+/*#include <stdio.h>
+int main()
 {
-	char const	*str = "hello!";
-	char	**result = ft_split(str, ' ');
-	int		i = 0;
-	while (result[i])
-	{
-		printf("%s\n", result[i]);
-		free (result[i]);
-		i++;
-	}
-    free (result);
-	return (0);
+	char *to_split = "hello word";
+	char spilt = "hello";
+
+	char *r = ft_spilt(to_split,spilt);
+	printf("the spilted string is : %s", r);
 }*/

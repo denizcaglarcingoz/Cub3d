@@ -54,6 +54,7 @@ void			color_set(t_inp_data *inp);
 /* INP DATA FREE */
 
 void			inp_data_free(t_inp_data *inp);
+void			free_split(char **split);
 
 /* Inp Check Errors */
 

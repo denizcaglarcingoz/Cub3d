@@ -24,6 +24,7 @@ void	get_color(t_inp_data *inp)
 	if (color_limit(red, green, blue))
 		inp_data_free(inp);
 	inp->ceiling_color = (red << 16 | green << 8 | blue);
+	free_split(color);
 	color = ft_split(inp->floor_color_data, ',');
 	if (color == NULL)
 		inp_data_free(inp);
@@ -33,12 +34,20 @@ void	get_color(t_inp_data *inp)
 	if (color_limit(red, green, blue))
 		inp_data_free(inp);
 	inp->floor_color = (red << 16 | green << 8 | blue);
+	free_split(color);
 }
 
 void	color_set(t_inp_data *inp)
 {
-	inp->ceiling_color_data = ft_strtrim(inp->ceiling_color_data, " ");
-	inp->floor_color_data = ft_strtrim(inp->floor_color_data, " ");
+	char	*temp1;
+	char	*temp2;
+
+	temp1 = ft_strtrim(inp->ceiling_color_data, " ");
+	temp2 = ft_strtrim(inp->floor_color_data, " ");
+	free(inp->ceiling_color_data);
+	free(inp->floor_color_data);
+	inp->ceiling_color_data = temp1;
+	inp->floor_color_data = temp2;
 	if (inp->ceiling_color_data == NULL || inp->floor_color_data == NULL)
 		inp_data_free(inp);
 	inp->ceiling_color = 0;
