@@ -2,41 +2,65 @@
 
 void	w_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y + ((+0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x + ((+0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)] != '1')
+	if (all->inp.map[(int)(all->player.p_pos_y + ((0.1
+					* sin(all->player.rotation_angle
+						* (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x
+			+ ((+0.1 * cos(all->player.rotation_angle
+				* (M_PI / 180))) * 0.3) * 2)] != '1')
 	{
-		all->player.p_pos_x +=  (+0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-		all->player.p_pos_y +=  (+0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x += (+0.1
+				* cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
+		all->player.p_pos_y += (+0.1
+				* sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
 	}
 }
 
 void	s_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y -  ((0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x -  ((0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3) * 2)] != '1')
+	if (all->inp.map[(int)(all->player.p_pos_y - ((0.1
+					* sin(all->player.rotation_angle
+						* (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x
+			- ((0.1 * cos(all->player.rotation_angle
+				* (M_PI / 180))) * 0.3) * 2)] != '1')
 	{
-		all->player.p_pos_x -=  (0.1 * cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
-		all->player.p_pos_y -=  (0.1 * sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x -= (0.1
+				* cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
+		all->player.p_pos_y -= (0.1
+				* sin(all->player.rotation_angle * (M_PI / 180))) * 0.3;
 	}
 }
 
 void	a_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y -  ((0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x -  ((0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
+	if (all->inp.map[(int)(all->player.p_pos_y - ((0.1
+					* sin((all->player.rotation_angle
+							+ 90) * (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x
+			- ((0.1 * cos((all->player.rotation_angle
+				+ 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
 	{
-		all->player.p_pos_y -=  (0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-		all->player.p_pos_x -=  (0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
+		all->player.p_pos_y -= (0.1
+				* sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x -= (0.1
+				* cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
 	}
 }
 
 void	d_move(t_all *all)
 {
-	if (all->inp.map[(int)(all->player.p_pos_y +  ((0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)]
-		[(int)(all->player.p_pos_x +  ((0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
+	if (all->inp.map[(int)(all->player.p_pos_y + ((0.1
+					* sin((all->player.rotation_angle
+							+ 90) * (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x + ((0.1
+			* cos((all->player.rotation_angle
+				+ 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
 	{
-		all->player.p_pos_y +=  (0.1 * sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
-		all->player.p_pos_x +=  (0.1 * cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
+		all->player.p_pos_y += (0.1
+				* sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
+		all->player.p_pos_x += (0.1
+				* cos((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
 	}
 }
 
@@ -62,6 +86,6 @@ void	arrow_move(int key_code, t_all *all)
 		if (all->player.rotation_angle < 360)
 			all->player.rotation_angle += 0.5;
 		else
-			all->player.rotation_angle = 0; 
+			all->player.rotation_angle = 0;
 	}
 }
