@@ -1,7 +1,7 @@
-WE /home/bassem/Downloads/Cub3d/texture/eagle.xpm
-SO /home/bassem/Downloads/Cub3d/texture/SO.xpm
-EA /home/bassem/Downloads/Cub3d/texture/EA.xpm
-NO /home/bassem/Downloads/Cub3d/texture/tonneau.xpm
+WE texture/tonneau.xpm
+SO texture/eagle.xpm
+EA texture/EA.xpm
+NO texture/purplestone.xpm
 
 F255,2,02    
 C 0,0,255    
