@@ -23,18 +23,39 @@ double	wall_hit_perc(t_all *all)
 	return (wall_hit_percentage);
 }
 
-t_texture_info	init_texture_info(t_all *all)
+void	init_tex_fail(t_all *all)
 {
-	t_texture_info	tex_info;
+	if (all->tex_no.data == NULL || all->tex_no.img == NULL)
+		clean_exit(all, 1);
+	if (all->tex_so.data == NULL || all->tex_so.img == NULL)
+		clean_exit(all, 1);
+	if (all->tex_ea.data == NULL || all->tex_ea.img == NULL)
+		clean_exit(all, 1);
+	if (all->tex_we.data == NULL || all->tex_we.img == NULL)
+		clean_exit(all, 1);
+}
 
-	tex_info.tex_loc_w = 0;
-	tex_info.wall_height = (600 / all->ray.distance);
-	tex_info.sky = (600 - tex_info.wall_height) / 2;
-	tex_info.floor = 600 - tex_info.wall_height - tex_info.sky;
-	tex_info.wall_top = tex_info.sky;
-	tex_info.i = 0;
-	tex_info.wall_hit_percentage = wall_hit_perc(all);
-	wall_hit_side(all, tex_info.wall_hit_percentage, &tex_info.tex_loc_w);
-	tex_info.wall_height2 = (600 / all->ray.distance);
-	return (tex_info);
+void	init_texture(t_all *all)
+{
+	all->tex_no.img = mlx_xpm_file_to_image(all->libx.mlx,
+			all->inp.no_path, &all->tex_no.width, &all->tex_no.height);
+	all->tex_no.data = (int *)mlx_get_data_addr(all->tex_no.img,
+			&all->tex_no.line_length, &all->tex_no.line_length,
+			&all->tex_no.line_length);
+	all->tex_so.img = mlx_xpm_file_to_image(all->libx.mlx,
+			all->inp.so_path, &all->tex_so.width, &all->tex_so.height);
+	all->tex_so.data = (int *)mlx_get_data_addr(all->tex_so.img,
+			&all->tex_so.line_length, &all->tex_so.line_length,
+			&all->tex_so.line_length);
+	all->tex_ea.img = mlx_xpm_file_to_image(all->libx.mlx,
+			all->inp.ea_path, &all->tex_ea.width, &all->tex_ea.height);
+	all->tex_ea.data = (int *)mlx_get_data_addr(all->tex_ea.img,
+			&all->tex_ea.line_length, &all->tex_ea.line_length,
+			&all->tex_ea.line_length);
+	all->tex_we.img = mlx_xpm_file_to_image(all->libx.mlx,
+			all->inp.we_path, &all->tex_we.width, &all->tex_we.height);
+	all->tex_we.data = (int *)mlx_get_data_addr(all->tex_we.img,
+			&all->tex_we.line_length, &all->tex_we.line_length,
+			&all->tex_we.line_length);
+	init_tex_fail(all);
 }

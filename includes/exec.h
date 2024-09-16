@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 16:52:06 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/02 15:57:30 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/16 18:43:11 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,19 +52,19 @@ typedef struct s_tex
 	void 	*img;
 	int 	*data;
 	int 	line_length;
-} t_tex;
+}	t_tex;
 
-
-typedef struct s_texture_info {
-	int i;
-	int wall_height;
-	int wall_height2;
-	int wall_top;
-	int sky;
-	int floor;
-	double wall_hit_percentage;
-	int tex_loc_w;
-} t_texture_info;
+typedef struct s_texture_info
+{
+	int		i;
+	int		wall_height;
+	int		wall_height2;
+	int		wall_top;
+	int		sky;
+	int		floor;
+	double	wall_hit_percentage;
+	int		tex_loc_w;
+}	t_texture_info;
 
 
 

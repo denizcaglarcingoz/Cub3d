@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/15 18:55:16 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/13 17:17:12 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/16 19:24:43 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "minilibx.h"
 
 typedef struct s_all t_all;
+typedef struct s_texture_info t_texture_info;
 
 /* INP CHECK */
 
@@ -67,12 +68,17 @@ void		element_check_err(char *data, t_inp_data *inp, char *msg);
 int		exec_main(t_all *inp);
 void	is_key_pressed(t_all *all);
 
-void	init_texture(t_all *all);
-void    init_image(t_all *all);
-void	put_texture(t_all *all, int px_loc);
+void			init_texture(t_all *all);
+void    		init_image(t_all *all);
+void			put_texture(t_all *all, int px_loc);
+// t_texture_info	init_texture_info(t_all *all);
+double			wall_hit_perc(t_all *all);
+void			wall_hit_side(t_all *all, double wall_hit_percentage, int *tex_loc_w);
+void			init_texture(t_all *all);
+void			draw_wall(t_all *all, int px_loc, t_texture_info tex_info);
+void			put_pixel_to_image(t_all *all, int x, int y, int color);
 
 /* MLX ACTIONS */
-
 int			key_press(int key_code, void *param);
 int			key_release(int key_code, void *param);
 int			close_window(t_all *all);
