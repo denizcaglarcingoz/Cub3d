@@ -7,7 +7,6 @@ void	set_p_pos(t_inp_data *inp)
 
 	i = 0;
 	j = 0;
-
 	while (inp->map[i])
 	{
 		while (inp->map[i][j])

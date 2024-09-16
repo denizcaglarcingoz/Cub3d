@@ -1,16 +1,15 @@
 #include "libraries.h"
 
-
 void	destroy_move(t_all *all)
 {
 	mlx_destroy_image(all->libx.mlx, all->libx.img);
 	mlx_clear_window(all->libx.mlx, all->libx.win);
 }
 
-// w = 119			
+// w = 119
 // a = 97			
 // s = 115			
-// d = 100			
+// d = 100
 
 void	is_key_pressed(t_all *all)
 {
@@ -36,7 +35,7 @@ int	key_press(int key_code, void *param)
 	if (key_code == 65307)
 		clean_exit(all, 0);
 	if (key_code == 119)
-		all->libx.w_pressed  = 119;
+		all->libx.w_pressed = 119;
 	if (key_code == 97)
 		all->libx.a_pressed = 97;
 	if (key_code == 115)
@@ -47,7 +46,7 @@ int	key_press(int key_code, void *param)
 		all->libx.left_pressed = 65361;
 	if (key_code == 65363)
 		all->libx.right_pressed = 65363;
-	return 	(0);
+	return (0);
 }
 
 int	key_release(int key_code, void *param)
@@ -58,7 +57,7 @@ int	key_release(int key_code, void *param)
 	if (key_code == 65307)
 		clean_exit(all, 0);
 	if (key_code == 119)
-		all->libx.w_pressed  = 0;
+		all->libx.w_pressed = 0;
 	if (key_code == 97)
 		all->libx.a_pressed = 0;
 	if (key_code == 115)
@@ -69,5 +68,5 @@ int	key_release(int key_code, void *param)
 		all->libx.left_pressed = 0;
 	if (key_code == 65363)
 		all->libx.right_pressed = 0;
-	return 	(0);
+	return (0);
 }
