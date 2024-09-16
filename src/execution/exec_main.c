@@ -1,36 +1,36 @@
 #include "libraries.h"
 
-void get_wall_side(t_all *all)
+void	get_wall_side(t_all *all)
 {
-    double x;
+	double	x;
+	double	angle;
 
-    x = (int)(all->ray.wall_hit_x - all->ray.ray_dir_x);
-    double angle = fmod(all->ray.ray_angle_radian, 2 * M_PI);
-    if (angle < 0)
+	x = (int)(all->ray.wall_hit_x - all->ray.ray_dir_x);
+	angle = fmod(all->ray.ray_angle_radian, 2 * M_PI);
+	if (angle < 0)
+		angle += 2 * M_PI;
+	if (x == (int)all->ray.wall_hit_x)
 	{
-        angle += 2 * M_PI;
-    }
-    if (x == (int)all->ray.wall_hit_x)
-    {
-        if (angle > 0 && angle < M_PI)
-            all->ray.wall_hit_side = 'N';
-        else
-            all->ray.wall_hit_side = 'S';
-    }
-    else
-    {
-        if (angle > M_PI / 2 && angle < 3 * M_PI / 2)
-            all->ray.wall_hit_side = 'E';
-        else
-            all->ray.wall_hit_side = 'W';
-    }
+		if (angle > 0 && angle < M_PI)
+			all->ray.wall_hit_side = 'N';
+		else
+			all->ray.wall_hit_side = 'S';
+	}
+	else
+	{
+		if (angle > M_PI / 2 && angle < 3 * M_PI / 2)
+			all->ray.wall_hit_side = 'E';
+		else
+			all->ray.wall_hit_side = 'W';
+	}
 }
 
 void	get_distance(t_all *all, double p_pos_x, double p_pos_y)
 {
-
-	all->ray.distance = sqrt(pow(p_pos_x - all->ray.wall_hit_x, 2) + pow(p_pos_y - all->ray.wall_hit_y, 2));
-	all->ray.distance *= cos((all->ray.ray_angle_radian - (all->player.rotation_angle * (M_PI / 180))));
+	all->ray.distance = sqrt(pow(p_pos_x - all->ray.wall_hit_x, 2)
+			+ pow(p_pos_y - all->ray.wall_hit_y, 2));
+	all->ray.distance *= cos((all->ray.ray_angle_radian
+				- (all->player.rotation_angle * (M_PI / 180))));
 }
 
 void	exec_lopp(t_all *all, int pixel_loc)
@@ -40,9 +40,11 @@ void	exec_lopp(t_all *all, int pixel_loc)
 	all->ray.ray_dir_y = sin(all->ray.ray_angle_radian) / 200;
 	all->ray.wall_hit_x = all->player.p_pos_x;
 	all->ray.wall_hit_y = all->player.p_pos_y;
-	while (all->ray.wall_hit_x < all->inp.map_width && all->ray.wall_hit_y< all->inp.map_height)
+	while (all->ray.wall_hit_x < all->inp.map_width
+		&& all->ray.wall_hit_y < all->inp.map_height)
 	{
-		if (all->inp.map[(int)all->ray.wall_hit_y][(int)all->ray.wall_hit_x] == '1')
+		if (all->inp.map[(int)all->ray.wall_hit_y]
+			[(int)all->ray.wall_hit_x] == '1')
 		{
 			get_wall_side(all);
 			break ;
@@ -54,28 +56,26 @@ void	exec_lopp(t_all *all, int pixel_loc)
 	put_texture(all, pixel_loc);
 }
 
-
-
-int exec_main(t_all *all)
+int	exec_main(t_all *all)
 {
-    int		i;
-    double	fov;
-    double	ray_increment;
+	int		i;
+	double	fov;
+	double	ray_increment;
 
-    i = 0;
-    fov = 60;
-    is_key_pressed(all);
-    if (all->libx.img)
-        mlx_destroy_image(all->libx.mlx, all->libx.img);
-    init_image(all);
-    ray_increment = fov / all->libx.win_witdh;
-    all->ray.ray_angle = all->player.rotation_angle - (fov / 2);
-    while (i < all->libx.win_witdh)
+	i = 0;
+	fov = 60;
+	is_key_pressed(all);
+	if (all->libx.img)
+		mlx_destroy_image(all->libx.mlx, all->libx.img);
+	init_image(all);
+	ray_increment = fov / all->libx.win_witdh;
+	all->ray.ray_angle = all->player.rotation_angle - (fov / 2);
+	while (i < all->libx.win_witdh)
 	{
-        exec_lopp(all, i);
-        all->ray.ray_angle += ray_increment;
-        i++;
-    }
-    mlx_put_image_to_window(all->libx.mlx, all->libx.win, all->libx.img, 0, 0);
-    return (0);
+		exec_lopp(all, i);
+		all->ray.ray_angle += ray_increment;
+		i++;
+	}
+	mlx_put_image_to_window(all->libx.mlx, all->libx.win, all->libx.img, 0, 0);
+	return (0);
 }
