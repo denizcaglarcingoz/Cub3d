@@ -55,6 +55,19 @@ typedef struct s_tex
 } t_tex;
 
 
+typedef struct s_texture_info {
+	int i;
+	int wall_height;
+	int wall_height2;
+	int wall_top;
+	int sky;
+	int floor;
+	double wall_hit_percentage;
+	int tex_loc_w;
+} t_texture_info;
+
+
+
 typedef struct s_all
 {
 	t_player player;
