@@ -1,4 +1,4 @@
-EXECUTABLE := cub3d
+EXECUTABLE := cub3D
 SRC_DIR = ./src
 OBJ_DIR = ./obj
 INC_DIR = ./includes
