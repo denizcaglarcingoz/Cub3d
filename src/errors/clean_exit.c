@@ -49,6 +49,8 @@ void	clean_exit(t_all *data, int checker)
 		if (data->libx.mlx)
 			free(data->libx.mlx);
 	}
+	if (data->libx.auto_key)
+		XCloseDisplay(data->libx.auto_key);
 	if (checker == 1)
 		malloc_error();
 	exit(0);
