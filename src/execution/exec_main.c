@@ -44,7 +44,8 @@ void	exec_lopp(t_all *all, int pixel_loc)
 		&& all->ray.wall_hit_y < all->inp.map_height)
 	{
 		if (all->inp.map[(int)all->ray.wall_hit_y]
-			[(int)all->ray.wall_hit_x] == '1')
+			[(int)all->ray.wall_hit_x] == '1' || all->inp.map
+			[(int)all->ray.wall_hit_y][(int)all->ray.wall_hit_x] == ' ')
 		{
 			get_wall_side(all);
 			break ;
