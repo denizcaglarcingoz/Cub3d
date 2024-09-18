@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memmove.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 19:25:13 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/18 21:42:54 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 15:55:30 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 19:38:14 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,38 @@
 
 void	*ft_memmove(void *dest, const void *src, size_t n)
 {
-	size_t			i;
-	unsigned char	*dest1;
-	unsigned char	*src1;
+	size_t		i;
+	char		*p_dest;
+	const char	*p_src;
 
-	i = 0;
-	dest1 = (unsigned char *)dest;
-	src1 = (unsigned char *)src;
-	if (!dest && !src)
-		return (dest);
-	if (dest < src)
+	p_dest = (char *)dest;
+	p_src = (const char *)src;
+	if (p_dest < p_src)
 	{
+		i = 0;
 		while (i < n)
 		{
-			dest1[i] = src1[i];
+			p_dest[i] = p_src[i];
 			i++;
 		}
-		return (dest);
 	}
-	while (n--)
+	if (p_dest > p_src)
 	{
-		dest1[n] = src1[n];
+		i = n;
+		while (i > 0)
+		{
+			p_dest[i -1] = p_src[i -1];
+			i--;
+		}
 	}
 	return (dest);
 }
 /*
 int main()
 {
-		char str[50] = "stuff for the thing";
-		//char str1[40];
-		//ft_memmove(str + 10, str + 5, 19);
-		memmove(str + 10, str + 5, 19);
-		printf("%s\n", str);
-		return 0;
+	char dest[15];
+	const char src[15] = "123456789011";
+	size_t n = 5;
+	ft_memmove(dest, src, n);
+	printf("%s",dest);
 }*/

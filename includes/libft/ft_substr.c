@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 15:36:38 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/06/28 19:08:49 by dcingoz          ###   ########.fr       */
+/*   Created: 2023/09/07 10:11:16 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:48:13 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,37 +14,38 @@
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {
-	char	*str;
-	size_t	i;
-	size_t	size;
+	char			*substr;
+	unsigned int	i[2];
 
-	if (!s)
-		return (NULL);
-	if (start >= ft_strlen(s))
-		return (ft_strdup(""));
-	i = 0;
-	size = ft_strlen((char *)s + start);
-	if (len > size)
-		len = size;
-	str = (char *)malloc((len + 1) * sizeof(char));
-	if (str == NULL)
-		return (NULL);
-	while (i < len && s[i])
+	i[0] = ft_strlen(s);
+	if (start > i[0])
 	{
-		str[i] = s[start + i];
-		i++;
+		substr = malloc((1) * sizeof(char));
+		if (substr == NULL)
+			return (NULL);
+		substr[0] = '\0';
+		return (substr);
 	}
-	str[i] = '\0';
-	return (str);
+	if (len > i[0] - start)
+		len = i[0] - start;
+	substr = malloc((len + 1) * sizeof(char));
+	if (substr == NULL)
+		return (NULL);
+	i[1] = 0;
+	while (start + i[1] < start + (unsigned int)len && s[start + i[1]])
+	{
+		substr[i[1]] = s[start + i[1]];
+		i[1]++;
+	}
+	substr[len] = '\0';
+	return (substr);
 }
-/*
+/* #include <stdio.h>
 int main()
 {
-		char const *str1 = "abcdefghijklmnopqrs";
-		unsigned int start = 12;
-		size_t len = 15;
-		char *str = ft_substr(str1, start, len);
-		printf("%s\n", str);
-		free(str);
-		return 0;
-}*/
+     char const s[17] = "Deniz is the king";
+    unsigned int start = 17;
+    size_t len = 5;
+    char *substr = ft_substr("BONi[1]OUR LES HARICOTS !", 8, 14);
+    printf("Substring is : /%s/", substr);
+} */

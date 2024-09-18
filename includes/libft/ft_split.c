@@ -5,97 +5,121 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 07:32:50 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/06/12 21:22:43 by dcingoz          ###   ########.fr       */
+/*   Created: 2023/09/07 17:58:45 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:43:25 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
-static size_t	str_count(char *str, char c)
+static int	ft_first_c_pass(char const *s, char c)
 {
-	size_t	i;
-	size_t	count;
-	int		in_word;
+	int	i;
 
 	i = 0;
-	count = 0;
-	in_word = 0;
-	while (str[i])
-	{
-		if (str[i] == c)
-			in_word = 0;
-		else if (!in_word)
-		{
-			in_word = 1;
-			count++;
-		}
+	while (s[i] == c && s[i])
 		i++;
-	}
-	return (count);
+	return (i);
 }
 
-static void	makes_free(char **strs, size_t j)
+static char	**ft_free_substrings(char **splitted, int j)
 {
-	while (j)
+	while (j >= 0)
 	{
-		free(strs[j - 1]);
+		free(splitted[j]);
 		j--;
 	}
-	free(strs);
+	free(splitted);
+	return (splitted);
 }
 
-static char	**ft_allocate(char **split, const char *s, char c)
+static char	**ft_split_into(char **splitted, char const *s, char c)
 {
-	size_t	j;
-	char	*start;
+	int	i;
+	int	j;
+	int	subs_len;
 
+	i = ft_first_c_pass(s, c);
 	j = 0;
-	while (*s)
+	while (s[i] != '\0')
 	{
-		while (*s == c)
-			s++;
-		if (*s)
+		subs_len = i;
+		while (s[subs_len] != c && s[subs_len])
+			subs_len++;
+		splitted[j] = ft_substr(s, i, subs_len - i);
+		if (splitted[j] == 0)
 		{
-			start = (char *)s;
-			while (*s && *s != c)
-				s++;
-			split[j] = ft_substr(start, 0, s - start);
-			if (split[j] == NULL)
-			{
-				makes_free(split, j);
-				return (NULL);
-			}
-			j++;
+			splitted = ft_free_substrings(splitted, j);
+			return (NULL);
 		}
+		j++;
+		i = subs_len;
+		while (s[i] == c && s[i] != '\0')
+			i++;
 	}
-	split[j] = NULL;
-	return (split);
+	return (splitted);
 }
 
-char	**ft_split(const char *s, char c)
+static int	ft_num_of_substrings(char const *s, char c)
 {
-	size_t	count;
-	char	**split;
+	int	i;
+	int	cut_count;
 
-	count = str_count((char *)s, c);
-	split = (char **)malloc(((count + 1) * sizeof (char *)));
-	if (split == NULL)
-		return (NULL);
-	split = ft_allocate(split, s, c);
-	return (split);
-}
-/*int	main(void)
-{
-	char const	*str = "hello!";
-	char	**result = ft_split(str, ' ');
-	int		i = 0;
-	while (result[i])
+	if (ft_strlen(s) == 0)
+		return (0);
+	i = ft_first_c_pass(s, c);
+	if (i == (int)ft_strlen(s))
+		return (0);
+	cut_count = 0;
+	while (s[i] != '\0')
 	{
-		printf("%s\n", result[i]);
-		free (result[i]);
+		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+		{
+			cut_count++;
+		}
 		i++;
 	}
-    free (result);
-	return (0);
-}*/
+	return (cut_count + 1);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**splitted;
+	int		num_of_subs;
+
+	num_of_subs = ft_num_of_substrings(s, c);
+	splitted = (char **)malloc((num_of_subs + 1) * sizeof(char *));
+	if (splitted == NULL)
+		return (NULL);
+	splitted = ft_split_into(splitted, s, c);
+	if (splitted == NULL)
+		return (NULL);
+	splitted[num_of_subs] = NULL;
+	return (splitted);
+}
+/* int main()
+{
+    // char *str = "";
+    // char charset = ' ';
+    char **result = ft_split("ggggggggggg", 'g');
+
+	 if (result) {
+        for (int i = 0; result[i]; i++) {
+            printf("Substring %d: %s\n", i + 1, result[i]);
+			 printf("Strcmp: %d\n", !strcmp(result[0], "tripouille"));
+        }
+    }
+ 	if(result[1] == NULL)
+		printf("true");
+	//	printf("Strcmp: %d\n", strcmp(result[0], "tripouille"));
+	//printf("Substrin 0; %s", result[0]);
+	int i = 0;
+	while(result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+	return 0;
+} */

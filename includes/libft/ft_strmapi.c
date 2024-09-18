@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 17:02:28 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/18 16:12:28 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/08 12:59:06 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 19:22:42 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,20 @@
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	char			*res;
+	char			*s2;
+	int				s_len;
 	unsigned int	i;
 
+	s_len = ft_strlen(s);
+	s2 = (char *)malloc((s_len + 1) * sizeof(char));
+	if (s2 == NULL)
+		return (NULL);
 	i = 0;
-	if (s == NULL)
-		return (NULL);
-	res = (char *)malloc((ft_strlen(s) + 1) * sizeof (char));
-	if (res == NULL)
-		return (NULL);
 	while (s[i])
 	{
-		res[i] = f(i, s[i]);
+		s2[i] = f(i, s[i]);
 		i++;
 	}
-	res[i] = '\0';
-	return (res);
+	s2[s_len] = '\0';
+	return (s2);
 }
-/*
-char	shift(unsigned int index, char c)
-{
-	(void)index;
-	return(c + 2);
-}
-int main()
-{
-	char *s = "abcde";
-	char *str;
-	str = ft_strmapi(s, shift);
-	printf("%s\n", str);
-	free(str);
-	return 0;
-}*/			

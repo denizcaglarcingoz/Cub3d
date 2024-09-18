@@ -3,134 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/25 10:53:11 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/10/23 18:53:48 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/15 15:52:06 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/27 04:04:48 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "get_next_line.h"
 
-#ifndef BUFFER_SIZE
-# define BUFFER_SIZE  4
-
-#endif
-
-static char	*ft_temp(char *s1, char *s2)
+static int	pos_count(int rp1, int rp0, char *buffer)
 {
-	char	*temp;
-
-	temp = ft_strjoin_g(s1, s2);
-	free(s1);
-	return (temp);
+	while (rp1 < rp0 && buffer[rp1] != '\n')
+		rp1++;
+	if (rp1 < rp0 && buffer[rp1] == '\n')
+		rp1++;
+	return (rp1);
 }
 
-static char	*extra(char *s)
+static char	*l_assign(char *l, char *buffer, int rp1)
 {
-	char	*s1;
-	int		i;
+	if (l == 0)
+		l = gnl_copystr(buffer, rp1, buffer, rp1);
+	else
+		l = linecat(l, buffer, rp1, ft_strlen(l));
+	return (l);
+}
+
+static int	cpystr_pos(char *buffer, char *l, int rp1, int rp0)
+{
 	int		j;
+	int		k;
 
+	k = pos_count(rp1, rp0, buffer);
+	l[k - rp1] = '\0';
 	j = 0;
-	i = 0;
-	while (s[i] && s[i] != '\n')
-		i++;
-	if (!s[i])
+	while (rp1 < k)
 	{
-		free(s);
-		return (NULL);
+		l[j] = buffer[rp1];
+		rp1++;
+		j++;
 	}
-	s1 = (char *)malloc((ft_strlen_g(s) - i + 1) * sizeof(char));
-	if (!s1)
-	{
-		free(s);
-		return (NULL);
-	}
-	while (s[i])
-		s1[j++] = s[++i];
-	s1[j] = '\0';
-	free(s);
-	return (s1);
-}
-
-static char	*make_line(char *s)
-{
-	char	*s1;
-	int		len;
-	int		i;
-
-	if (!(*s))
-		return (NULL);
-	len = 0;
-	while (s[len] && s[len] != '\n')
-		len++;
-	s1 = (char *)malloc((len + 2) * sizeof(char));
-	if (!s1)
-		return (NULL);
-	i = -1;
-	while (++i < len)
-		s1[i] = s[i];
-	if (s[i] == '\n')
-	{
-		s1[i] = s[i];
-		i++;
-	}
-	s1[i] = '\0';
-	return (s1);
-}
-
-static char	*build_raw_line(int fd, char *buffer, char *s)
-{
-	long long int	bytes_read;
-
-	bytes_read = 1;
-	while (!ft_strchr_g(s, '\n') && bytes_read > 0)
-	{
-		bytes_read = read(fd, buffer, BUFFER_SIZE);
-		if (bytes_read == -1)
-		{
-			free(s);
-			free(buffer);
-			return (NULL);
-		}
-		buffer[bytes_read] = '\0';
-		s = ft_temp(s, buffer);
-		if (!s)
-		{
-			free(buffer);
-			return (NULL);
-		}
-	}
-	free(buffer);
-	return (s);
+	return (rp1);
 }
 
 char	*get_next_line(int fd)
 {
-	char		*line;
-	char		*buffer;
-	static char	*str = NULL;
+	static char	buffer[BUFFER_SIZE];
+	char		*l;
+	static int	r_p[2] = {0, 0};
 
-	if (BUFFER_SIZE <= 0 || fd < 0)
-		return (NULL);
-	if (str == NULL)
+	l = 0;
+	if (buffer[0] != 0 && r_p[1] < BUFFER_SIZE)
 	{
-		str = (char *)malloc(sizeof(char));
-		if (!str)
-			return (NULL);
-		*str = '\0';
+		l = (char *)malloc(pos_count(r_p[1], r_p[0], buffer) - r_p[1] + 1);
+		if (l == 0)
+			return (error_free_detail(0, buffer, r_p[0]));
+		r_p[1] = cpystr_pos(buffer, l, r_p[1], r_p[0]);
+		if (ft_strlen(l) > 0 && l[ft_strlen(l) - 1] == '\n' )
+			return (error_free_detail(l, buffer, r_p[0]));
 	}
-	buffer = (char *)malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buffer)
+	while (1)
 	{
-		free(str);
-		return (NULL);
+		r_p[0] = read(fd, buffer, BUFFER_SIZE);
+		if (r_p[0] < 1)
+			return (error_free_detail(l, buffer, r_p[0]));
+		r_p[1] = pos_count(0, r_p[0], buffer);
+		l = l_assign(l, buffer, r_p[1]);
+		if (r_p[0] < BUFFER_SIZE || buffer[r_p[1] - 1] == '\n')
+			break ;
 	}
-	str = build_raw_line(fd, buffer, str);
-	if (!str)
-		return (NULL);
-	line = make_line(str);
-	str = extra(str);
-	return (line);
+	return (l);
 }
+
+/* l is line to return
+	r_p[0] is read byte
+	r_p[1] is count position of last read byte
+ */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 12:53:43 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 12:14:04 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 18:17:12 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:44:16 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,40 +14,20 @@
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	i;
-	void	*ptr;
+	size_t	t_size;
+	void	*p_calloc;
 
-	i = 0;
-	ptr = malloc(nmemb * size);
-	if (ptr == NULL)
+	t_size = nmemb * size;
+	if ((nmemb && size) && t_size / nmemb != size)
 		return (NULL);
-	while (i < nmemb * size)
-	{
-		((char *)ptr)[i] = 0;
-		i++;
-	}
-	return (ptr);
+	p_calloc = malloc(t_size);
+	if (p_calloc == NULL)
+		return (NULL);
+	if (p_calloc)
+		ft_bzero(p_calloc, t_size);
+	return (p_calloc);
 }
 /*
 int main()
 {
-	int i = 0;
-	char *str = (char *)ft_calloc(5, sizeof(char));
-
-	while (i < 5)
-	{
-		printf("%c\n", *str);
-		i++;
-	}
-	free(str);
-	char *str1 = (char *)calloc(5, sizeof(char));
-
-    while (i < 5)
-    {
-        printf("%c\n", *str1);
-        i++;
-    }
-    free(str1);
-
-	return 0;
 }*/

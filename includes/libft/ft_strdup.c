@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 13:10:29 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/13 12:16:08 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 19:19:00 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:44:32 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,29 @@
 
 char	*ft_strdup(const char *s)
 {
-	size_t	i;
-	char	*dest;
-	char	*src;
+	size_t		i;
+	char		*str_dup;
+	size_t		j;
 
-	src = (char *)s;
 	i = 0;
-	dest = (char *)malloc((ft_strlen(src) + 1) * sizeof(char));
-	if (dest == NULL)
-		return (NULL);
-	while (src[i])
-	{
-		dest[i] = src[i];
+	while (s[i] != '\0')
 		i++;
+	str_dup = (char *)malloc(i + 1);
+	if (str_dup == NULL)
+		return (NULL);
+	j = 0;
+	while (j < i)
+	{
+		str_dup[j] = s[j];
+		j++;
 	}
-	dest[i] = '\0';
-	return (dest);
+	str_dup[i] = '\0';
+	return (str_dup);
 }
+
 /*
+#include <stdio.h>
 int main()
 {
-		char source[5] = "stuff";
-
-		printf("%s", strdup(source));
-		return (0);
+ 
 }*/

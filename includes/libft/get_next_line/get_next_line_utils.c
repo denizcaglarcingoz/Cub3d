@@ -3,57 +3,80 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/29 18:36:06 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/10/03 16:57:04 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/15 15:58:52 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/27 04:04:47 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft.h"
+#include "get_next_line.h"
 
-size_t	ft_strlen_g(char *s)
+char	*gnl_copystr(char *src, int memlen, char *buffer, int i)
 {
-	size_t	i;
+	char	*str;
+	int		k;
 
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
-
-char	*ft_strjoin_g(char *s1, char *s2)
-{
-	char	*result;
-	size_t	total_length;
-	size_t	i;
-	size_t	j;
-
-	i = -1;
-	j = 0;
-	if (!s1 || !s2)
-		return (NULL);
-	total_length = ft_strlen(s1) + ft_strlen(s2);
-	result = (char *)malloc((total_length + 1) * sizeof (char));
-	if (result == NULL)
-		return (NULL);
-	while (s1[++i])
-		result[i] = s1[i];
-	while (s2[j])
-		result[i++] = s2[j++];
-	result[i] = '\0';
-	return (result);
-}
-
-char	*ft_strchr_g(char *s, int c)
-{
-	while (*s)
+	str = (char *)malloc(memlen + 1);
+	if (str == 0)
+		return (error_free_detail(src, buffer, -1));
+	k = 0;
+	while (k < i)
 	{
-		if (*s == (char)c)
-			return ((char *)s);
-		s++;
+		str[k] = src[k];
+		k++;
 	}
-	if ((char)c == '\0')
-		return ((char *)s);
-	return (NULL);
+	str[k] = '\0';
+	return (str);
 }
+
+char	*error_free_detail(char *l, char *buffer, int bytes_read)
+{
+	int	i;
+
+	if ((l != NULL && ft_strlen(l) < 1) || bytes_read == -1)
+	{
+		if (buffer != 0)
+		{
+			i = 0;
+			while (i < BUFFER_SIZE)
+			{
+				buffer[i] = 0;
+				i++;
+			}
+		}
+		free(l);
+		return (NULL);
+	}
+	else
+		return (l);
+}
+
+char	*linecat(char *l, char *buffer, int pos, int llen)
+{
+	int		k;
+	int		j;
+	char	*temp;
+
+	temp = gnl_copystr(l, llen, buffer, llen);
+	free(l);
+	l = (char *)malloc(ft_strlen(temp) + pos + 1);
+	if (l == 0)
+		return (error_free_detail(temp, buffer, -1));
+	k = 0;
+	while (temp[k] != '\0')
+	{
+		l[k] = temp[k];
+		k++;
+	}
+	j = 0;
+	while (j < pos)
+	{
+		l[k + j] = buffer[j];
+		j++;
+	}
+	l[ft_strlen(temp) + pos] = '\0';
+	free(temp);
+	return (l);
+}
+

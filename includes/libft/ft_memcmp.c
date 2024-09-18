@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 10:07:06 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/18 12:52:42 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 17:46:38 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 18:21:37 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,31 @@
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
 	size_t			i;
-	unsigned char	*s11;
-	unsigned char	*s21;
+	unsigned char	*p_s1;
+	unsigned char	*p_s2;
 
-	s11 = (unsigned char *)s1;
-	s21 = (unsigned char *)s2;
-	i = 0;
 	if (n == 0)
 		return (0);
-	while (i < n - 1 && (*s11 == *s21))
+	p_s1 = (unsigned char *) s1;
+	p_s2 = (unsigned char *) s2;
+	i = 0;
+	while (i < n)
 	{
-		s11++;
-		s21++;
+		if (p_s1[i] != p_s2[i])
+			return (p_s1[i] - p_s2[i]);
 		i++;
 	}
-	return (*s11 - *s21);
+	return (0);
 }
 /*
 int main()
 {
-	char *str1 = "hello";
-	char *str2 = "heillo";
-	printf("%d\n", ft_memcmp(str1, str2, 10));
-	printf("%d\n", memcmp(str1, str2, 10));
-	return 0;
+    const char *s1;
+    const char *s2;
+    int a;
+
+    s1 = "aaanaaaaaa";
+    s2 = "aaanAa";
+    printf("%d" , ft_memcmp(s1, s2, 5));
+    write(1, &a, 4);
 }*/

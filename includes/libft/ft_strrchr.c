@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 07:33:24 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/18 21:41:57 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 14:20:00 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 19:56:49 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,36 @@
 
 char	*ft_strrchr(const char *s, int c)
 {
-	char	*s1;
+	int	i;
+	int	last;
 
-	s1 = (char *)(s) + ft_strlen(s);
+	i = 0;
+	last = -1;
 	if ((char)c == '\0')
-		return (s1);
-	s1--;
-	while (s1 >= s)
+		return ((char *)s + ft_strlen(s));
+	while (s[i] != '\0')
 	{
-		if (*s1 == (char)c)
-			return (s1);
-		s1--;
+		if (s[i] == (char)c)
+			last = i;
+		i++;
 	}
-	return (NULL);
+	if (last == -1)
+		return (NULL);
+	return ((char *)(s + last));
 }
-/*
-int main()
+
+/* int main ()
 {
-    char c = 'o';
-    const char *s = "some words";
-    char *res = ft_strrchr(s, c);
-	if(res != NULL)
-    printf("%c\n", *res);
-    else
-    printf("char not found\n");
-    //printf("%c\n", *(strrchr(s, c)));
-    return 0;
-}*/
+	const char *largestring = "Foo Baz";
+	int c = 'r';int main ()
+{
+	const char *largestring = "Foo Baz";
+	int c = 'r';
+	char *ptr;
+
+	ptr = ft_strrchr(largestring, c + 256);
+	printf("Ptr is : %s", ptr);
+}
+
+}
+ */

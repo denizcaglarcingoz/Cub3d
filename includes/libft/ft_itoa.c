@@ -5,76 +5,65 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/11 13:47:46 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/06/25 18:30:26 by dcingoz          ###   ########.fr       */
+/*   Created: 2023/09/07 13:57:54 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:43:47 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	count_digit(int n)
+static int	count_digits(int n)
 {
-	int	count;
+	int		count;
+	long	l_n;
 
-	if (n < 0)
-		count = 1;
-	else
-		count = 0;
-	while (n / 10)
+	l_n = n;
+	count = 0;
+	if (l_n == 0)
+		return (1);
+	if (l_n < 0)
 	{
-		n = n / 10;
+		l_n = -l_n;
 		count++;
 	}
-	return (++count);
-}
-
-static int	sign(int a)
-{
-	if (a < 0)
-		a = -a;
-	return (a);
-}
-
-static void	cases( int n, int n_start, char *str)
-{
-	if (n_start >= 0)
-		*str = n + '0';
-	else
-		*str = '-';
+	while (l_n > 0)
+	{
+		l_n /= 10;
+		count++;
+	}
+	return (count);
 }
 
 char	*ft_itoa(int n)
 {
-	char	*str;
-	int		count;
-	int		n_start;
+	int		num_digits;
+	long	l_n;
+	char	*result;
 
-	n_start = n;
-	count = count_digit(n);
-	str = (char *)malloc((count + 1) * sizeof(char));
-	if (str == NULL)
+	num_digits = count_digits(n);
+	l_n = n;
+	result = (char *)malloc((num_digits + 1) * sizeof(char));
+	if (result == NULL)
 		return (NULL);
-	str[count] = '\0';
-	while (--count)
+	if (l_n < 0)
 	{
-		str[count] = sign(n % 10) + '0';
-		if (n < 0 && count == 1)
-			str[count] = -n + '0';
-		n /= 10;
+		result[0] = '-';
+		l_n = -l_n;
 	}
-	cases(n, n_start, str);
-	return (str);
+	result[num_digits] = '\0';
+	while (num_digits - 1 >= 0)
+	{
+		result[num_digits - 1] = '0' + (l_n % 10);
+		l_n /= 10;
+		num_digits--;
+		if (n < 0 && num_digits - 1 == 0)
+			break ;
+	}
+	return (result);
 }
-/*int main()
+/* #include <stdio.h>
+int main()
 {
-	char *res = ft_itoa(-2147483648);
-	int i = 0;
-	while (i < 11)
-	{
-		printf("%c\n", res[i]);
-	i++;
-	}
-	free(res);
-	//printf("%s\n", ft_itoa(1234));
-	return 0;
-}*/
+    char *a = ft_itoa(-2147483648);
+    printf("%s",a);
+} */

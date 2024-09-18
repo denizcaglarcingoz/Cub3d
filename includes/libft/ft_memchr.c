@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 09:29:42 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/18 21:53:50 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 17:30:14 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:52:56 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,27 +14,23 @@
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	unsigned char	*s1;
+	size_t			i;
 
-	c = (unsigned char)c;
-	s1 = (unsigned char *)s;
-	while (n--)
+	i = 0;
+	while (i < n)
 	{
-		if (*s1 == c)
-			return ((void *)s1);
-		s1++;
+		if (*(unsigned char *)(s + i) == (unsigned char)c)
+			return ((void *)(s + i));
+		i++;
 	}
 	return (NULL);
 }
 /*
-int main()
+int main ()
 {
-	char c = 'e';
-	const char *s = "hallo welt";
-	char *res = memchr(s, c, 13);
-	if(res != NULL)
-	printf("%c\n", *res);
-	else
-	printf("char not found\n");
-	return 0;
-}*/	
+	const char *largestring = "Foo Baz";
+	int c = 'z';
+	char *ptr;
+	ptr = ft_memchr(largestring, c, 5);
+	printf("Ptr is : %s", ptr);
+}*/

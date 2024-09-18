@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 21:17:22 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 11:08:22 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/05 14:23:37 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 18:22:51 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,35 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	size_t	i;
-	size_t	j;
+	size_t	a;
+	size_t	src_length;
 
-	i = 0;
-	j = ft_strlen((char *)src);
-	if (size != 0)
+	src_length = 0;
+	while (src[src_length] != '\0')
 	{
-		while (i < size - 1 && src[i])
-		{
-			dst[i] = src[i];
-			i++;
-		}
-		dst[i] = '\0';
+		src_length++;
 	}
-	return (j);
+	if (size == 0)
+		return (src_length);
+	a = 0;
+	while (src[a] != '\0' && a < size - 1)
+	{
+		dst[a] = src[a];
+		a++;
+	}
+	dst[a] = '\0';
+	return (src_length);
 }
 /*
-#include <bsd/string.h>
-
-int main()
-
-{
-	//char	src[] = "stuff";
-	//char	dest[] = "things";
-	char	src1[] = "stuff";
-	char	dest1[] = "things";
-
-	
-	printf("%lu\n", strlcpy(dest1, src1, 3));
-	printf("%s", dest1);
+#include <stdio.h>
+int main ()
+{	
+	char dest[10] = "This is ";
+	char *src = "a potentially long string";
+	int size = 10;
+	int a = ft_strlcpy(dest,src, size);
+	printf("%d\n", a);
+	printf("%s",dest);
 	return (0);
+
 }*/

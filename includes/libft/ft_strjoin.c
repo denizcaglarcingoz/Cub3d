@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 16:25:07 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/08/15 19:45:06 by dcingoz          ###   ########.fr       */
+/*   Created: 2023/09/07 10:43:15 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/18 21:19:53 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,12 @@ char	*ft_strjoin(char *s1, char const *s2)
 	result[i] = '\0';
 	return (result);
 }
+
 /*
-int main(void)
+int main ()
 {
-	char *str = "get money";
-	char *str1 = ", get paid";
-	char *res;
-	res = ft_strjoin(str, str1);
-	printf("%s\n", res);
-	free(res);
-	return 0;
+    char const *s1 = "Deniz ";
+    char const *s2 = "is the king of bullshit";
+    char *join = ft_strjoin(s1, s2);
+    printf("%s", join);
 }*/

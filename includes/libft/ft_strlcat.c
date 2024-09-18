@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcat.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 21:59:54 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 11:16:50 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/05 14:40:03 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:56:24 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,36 @@
 size_t	ft_strlcat(char *dst, const char *src, size_t size)
 {
 	size_t	i;
-	size_t	len_src;
-	size_t	len_dst;
-	char	*src1;
+	size_t	j;
+	size_t	a;
 
-	src1 = (char *)src;
 	i = 0;
-	len_src = ft_strlen(src1);
-	len_dst = ft_strlen(dst);
-	if (size == 0 || size <= len_dst)
-		return (len_src + size);
-	while (src[i] && len_dst < size - 1)
-	{
-		dst[len_dst] = src1[i];
+	if (size <= 0)
+		return (ft_strlen(src));
+	while (dst[i] != '\0' && i < size)
 		i++;
-		len_dst++;
+	a = i;
+	j = 0;
+	while (src[j] != '\0' && i < size - 1)
+	{
+		dst[i] = src[j];
+		i++;
+		j++;
 	}
-	dst[len_dst] = '\0';
-	return (len_dst + ft_strlen(&src1[i]));
+	if (i < size)
+		dst[i] = '\0';
+	while (src[j] != '\0')
+		j++;
+	return (a + j);
 }
-/*#include <bsd/string.h>
-int main (void)
+/*
+int main()
 {
-	char src[] = "hello";
-	char dest[10] = "dest";
-	printf("%lu\n", strlcat(dest, src, 8));
-	printf("%s\n", dest);
+	char dest[10] = "This is ";
+	char *src = "a potentially long string";
+	int size = 10;
+	int strlcat = ft_strlcat(dest, src, size);
+	printf("Cat = %s\n", dest);
+	printf("Catted size = %d", strlcat);
+	return (0);
 }*/
