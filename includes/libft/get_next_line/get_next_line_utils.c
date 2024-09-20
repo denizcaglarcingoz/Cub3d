@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/09/15 15:58:52 by dcingoz           #+#    #+#             */
-/*   Updated: 2023/09/27 04:04:47 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/20 16:05:05 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,3 @@ char	*linecat(char *l, char *buffer, int pos, int llen)
 	free(temp);
 	return (l);
 }
-

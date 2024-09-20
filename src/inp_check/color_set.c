@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   color_set.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 16:02:23 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/20 16:05:48 by dcingoz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libraries.h"
 
 int	color_limit(int red, int green, int blue)
@@ -7,12 +19,13 @@ int	color_limit(int red, int green, int blue)
 		return (1);
 	return (0);
 }
+
 void	color_free(char **color)
 {
 	int	i;
 
 	i = 0;
-	while(color[i])
+	while (color[i])
 	{
 		free(color[i]);
 		i++;
