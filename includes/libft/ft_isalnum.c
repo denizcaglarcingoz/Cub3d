@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 13:12:21 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/19 07:31:27 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/08 14:48:29 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 18:30:15 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,29 @@
 
 int	ft_isalnum(int c)
 {
-	if (ft_isalpha(c) || ft_isdigit(c))
-		return (8);
-	return (0);
+	if (c > 64 && c < 91)
+	{
+		return (1);
+	}
+	else if (c > 96 && c < 123)
+	{
+		return (2);
+	}
+	else if (c >= '0' && c <= '9')
+	{
+		return (3);
+	}
+	else
+	{
+		return (0);
+	}
 }
-/*int main()
+/*
+#include <stdio.h>
+int main(int argc, char **argv)
 {
-        int c = '9';
-        printf("%d\n", ft_isalnum(c));
-//       printf("%d\n", isalnum(c));
-        return 0;
-}*/
+	int a = ft_isalnum('9');
+	printf("%d", a);
+
+}
+*/

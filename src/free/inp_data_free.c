@@ -1,4 +1,28 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inp_data_free.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 16:03:50 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/20 16:03:51 by dcingoz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libraries.h"
+
+static void	free_map(char **map)
+{
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		free(map[i]);
+		i++;
+	}
+}
 
 void	inp_data_free(t_inp_data *inp)
 {
@@ -11,23 +35,9 @@ void	inp_data_free(t_inp_data *inp)
 	if (inp->we_path)
 		free(inp->we_path);
 	if (inp->map)
-		free(inp->map);
-	if (inp->ceiling_color_data)
-		free(inp->ceiling_color_data);
+		(free_map(inp->map), free(inp->map));
 	if (inp->floor_color_data)
 		free(inp->floor_color_data);
-	
-}
-
-void	free_split(char **split)
-{
-	int	i;
-
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
+	if (inp->ceiling_color_data)
+		free(inp->ceiling_color_data);
 }

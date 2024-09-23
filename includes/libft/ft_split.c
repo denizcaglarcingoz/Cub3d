@@ -5,78 +5,121 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/06 07:32:50 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/06/12 21:22:43 by dcingoz          ###   ########.fr       */
+/*   Created: 2023/09/07 17:58:45 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/10 18:43:25 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <string.h>
 
-static int	numwords(char const *s, char c)
+static int	ft_first_c_pass(char const *s, char c)
 {
-	int	cur;
-	int	word_num;
+	int	i;
 
-	cur = 0;
-	word_num = 0;
-	while (s[cur] != 0)
-	{
-		if (s[cur] != c && (s[cur + 1] == c || s[cur + 1] == 0))
-			word_num++;
-		cur++;
-	}
-	return (word_num);
+	i = 0;
+	while (s[i] == c && s[i])
+		i++;
+	return (i);
 }
 
-static int	split_words(char **result, char const *s, char c, int word)
+static char	**ft_free_substrings(char **splitted, int j)
 {
-	int		start_cur;
-	int		end_cur;
-
-	end_cur = 0;
-	start_cur = 0;
-	while (s[end_cur])
+	while (j >= 0)
 	{
-		if (s[end_cur] == c || s[end_cur] == 0)
-			start_cur = end_cur + 1;
-		if (s[end_cur] != c && (s[end_cur + 1] == c || s[end_cur + 1] == 0))
-		{
-			result[word] = malloc(sizeof(char) * (end_cur - start_cur + 2));
-			if (!result[word])
-			{
-				while (word++)
-					free(result[word]);
-				return (0);
-			}
-			ft_strlcpy(result[word], (s + start_cur), end_cur - start_cur + 2);
-			word++;
-		}
-		end_cur++;
+		free(splitted[j]);
+		j--;
 	}
-	result[word] = 0;
-	return (1);
+	free(splitted);
+	return (NULL);
+}
+
+static char	**ft_split_into(char **splitted, char const *s, char c)
+{
+	int	i;
+	int	j;
+	int	subs_len;
+
+	i = ft_first_c_pass(s, c);
+	j = 0;
+	while (s[i] != '\0')
+	{
+		subs_len = i;
+		while (s[subs_len] != c && s[subs_len])
+			subs_len++;
+		splitted[j] = ft_substr(s, i, subs_len - i);
+		if (splitted[j] == 0)
+		{
+			splitted = ft_free_substrings(splitted, j);
+			return (NULL);
+		}
+		j++;
+		i = subs_len;
+		while (s[i] == c && s[i] != '\0')
+			i++;
+	}
+	return (splitted);
+}
+
+static int	ft_num_of_substrings(char const *s, char c)
+{
+	int	i;
+	int	cut_count;
+
+	if (ft_strlen(s) == 0)
+		return (0);
+	i = ft_first_c_pass(s, c);
+	if (i == (int)ft_strlen(s))
+		return (0);
+	cut_count = 0;
+	while (s[i] != '\0')
+	{
+		if (s[i] == c && s[i + 1] != c && s[i + 1] != '\0')
+		{
+			cut_count++;
+		}
+		i++;
+	}
+	return (cut_count + 1);
 }
 
 char	**ft_split(char const *s, char c)
 {
-	char	**result;
+	char	**splitted;
+	int		num_of_subs;
 
-	if (!s)
-		return (0);
-	result = malloc(sizeof(char *) * (numwords(s, c) + 1));
-	if (!result)
-		return (0);
-	if (!split_words(result, s, c, 0))
-		return (free(result), NULL);
-	return (result);
+	num_of_subs = ft_num_of_substrings(s, c);
+	splitted = (char **)malloc((num_of_subs + 1) * sizeof(char *));
+	if (splitted == NULL)
+		return (NULL);
+	splitted = ft_split_into(splitted, s, c);
+	if (splitted == NULL)
+		return (NULL);
+	splitted[num_of_subs] = NULL;
+	return (splitted);
 }
-
-/*#include <stdio.h>
-int main()
+/* int main()
 {
-	char *to_split = "hello word";
-	char spilt = "hello";
+    // char *str = "";
+    // char charset = ' ';
+    char **result = ft_split("ggggggggggg", 'g');
 
-	char *r = ft_spilt(to_split,spilt);
-	printf("the spilted string is : %s", r);
-}*/
+	 if (result) {
+        for (int i = 0; result[i]; i++) {
+            printf("Substring %d: %s\n", i + 1, result[i]);
+			 printf("Strcmp: %d\n", !strcmp(result[0], "tripouille"));
+        }
+    }
+ 	if(result[1] == NULL)
+		printf("true");
+	//	printf("Strcmp: %d\n", strcmp(result[0], "tripouille"));
+	//printf("Substrin 0; %s", result[0]);
+	int i = 0;
+	while(result[i])
+	{
+		free(result[i]);
+		i++;
+	}
+	free(result);
+	return 0;
+} */

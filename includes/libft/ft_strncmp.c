@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 08:24:43 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/18 11:33:45 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/05 19:46:33 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 18:23:04 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,27 @@
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	size_t	i;
+	unsigned int	i;
 
 	i = 0;
-	if (n == 0)
-		return (0);
-	while (*s1 && (*s1 == *s2) && i < n - 1)
+	while (((unsigned char)s1[i] != '\0'
+			|| (unsigned char)s2[i] != '\0') && i < n)
 	{
-		s1++;
-		s2++;
+		if ((unsigned char)s1[i] != (unsigned char)s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 		i++;
 	}
-	return (*(unsigned char *)s1 - *(unsigned char *)s2);
+	return (0);
 }
-/*
 
-int main()
+/* int main()
 {
-	const char *str = "get money";
-	const char *str1 = "get paid";
-	printf("%d\n", ft_strncmp(str, str1, 6));
-	printf("%d\n", strncmp(str, str1, 6));
-	return 0;
-}*/
+    const char *s1;
+    const char *s2;
+    int a;
+
+    s1 = "test\200";
+    s2 = "test\0";
+    printf("%d" , ft_strncmp(s1, s2, 5));
+    write(1, &a, 4);
+} */

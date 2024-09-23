@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 18:52:14 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/07/02 14:40:49 by dcingoz          ###   ########.fr       */
+/*   Created: 2023/09/06 15:17:53 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 18:21:48 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,28 @@
 
 void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	size_t				i;
-	unsigned char		*dest1;
-	const unsigned char	*src1;
+	size_t		i;
+	char		*p_dest;
+	const char	*p_src;
 
-	if (!src && !dest)
+	p_dest = (char *)dest;
+	p_src = (const char *)src;
+	if (dest == 0 && src == 0)
 		return (dest);
-	dest1 = (unsigned char *)dest;
-	src1 = (const unsigned char *)src;
 	i = 0;
 	while (i < n)
 	{
-		dest1[i] = src1[i];
+		p_dest[i] = p_src[i];
 		i++;
 	}
 	return (dest);
 }
-/*
-int main()
+
+/* int main()
 {
-        char str[50] = "stuff for the thing";
-        //char str1[40];
-       // ft_memcpy(str + 11, str + 5, 19);
-        ft_memcpy(str + 11, str + 5, 19);
-        printf("%s\n", str);
-        return 0;
-}
-*/
+	char dest[15];
+	const char src[10] = "1234567890";
+	size_t n = 12;
+	dest = ft_memcpy(dest, src, n);
+	printf("%s",dest);
+} */

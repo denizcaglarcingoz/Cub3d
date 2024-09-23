@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 17:21:42 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 10:31:36 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 14:58:25 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 18:20:21 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,22 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	unsigned char	*s1;
+	size_t	i;
+	char	*p_holder;
 
-	s1 = (unsigned char *)s;
-	while (n)
+	p_holder = (char *)s;
+	i = 0;
+	while (i < n)
 	{
-		*s1 = 0;
-		s1++;
-		n--;
+		p_holder[i] = '\0';
+		i++;
 	}
 }
 /*
 int main()
 {
-		char str[20] = "thingsforstuff";
-		ft_bzero(str + 3, 5);
-		//bzero(str + 3, 5);
-		printf("%s\n", str);
-		printf("%s\n", str + 9);
-	return 0;
+	char s[5] = "Deniz";
+	size_t n = 10;
+	ft_bzero(s, n);
+	printf("%s",s);
 }*/

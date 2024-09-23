@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 14:14:50 by jhotchki          #+#    #+#             */
-/*   Updated: 2024/05/10 21:40:28 by dcingoz          ###   ########.fr       */
+/*   Created: 2023/09/05 12:04:45 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 19:19:45 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,19 @@
 
 size_t	ft_strlen(const char *s)
 {
-	size_t	i;
+	size_t	length;
 
-	i = 0;
-	while (s != NULL && s[i] != '\0')
-		i++;
-	return (i);
+	length = 0;
+	while (s[length] != '\0')
+		length++;
+	return (length);
 }
 /*
-int main()
+#include <stdio.h>
+int main ()
 {
-		printf("%lu\n", ft_strlen("getmoney"));
-		printf("%lu\n", strlen("getmoney"));
-		return 0;
+	char *len = "Deniz Caglar Cingoz";
+	int a = ft_strlen(len);
+	printf("%d", a);
+	return (0);
 }*/

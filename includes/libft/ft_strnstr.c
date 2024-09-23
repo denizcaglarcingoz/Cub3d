@@ -3,52 +3,53 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/05 10:45:59 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 11:49:26 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/05 21:01:53 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 21:14:28 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <bsd/string.h>
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	size_t	i;
+	size_t	lil_len;
 	size_t	j;
-	char	*big1;
-	char	*little1;
+	size_t	a;
 
-	big1 = (char *)big;
-	little1 = (char *)little;
-	i = 0;
+	lil_len = ft_strlen(little);
+	if (*little == 0)
+		return ((char *)big);
 	j = 0;
-	if (!little1[0])
-		return (big1);
-	if (len == 0)
-		return (0);
-	while (big1[i] && i < len)
+	while (big[j] != '\0' && j < len)
 	{
-		while (big1[i + j] && big1[i + j] == little1[j] && i + j < len)
-			j++;
-		if (!little1[j])
-			return (big1 + i);
-		i++;
-		j = 0;
+		if (big[j] == little[0])
+		{
+			a = 0;
+			while (big[j + a] == little[a] && little[a]
+				&& j + a < len)
+				a++;
+			if (a == lil_len)
+				return ((char *)(big + j));
+		}
+		j++;
 	}
 	return (NULL);
 }
-/*
-#include <bsd/string.h>
 
-int main()
+/* int main ()
 {
-	char *str = "here is a string";
-	char *str2 = "string";
-	char *result = (ft_strnstr(str, str2, 16));
-	char *result1 = (strnstr(str, str2, 16));
-	printf("%p\n", result);
-	printf("%p\n", result1);
-	return 0;
+	const char *largestring = "Foo Bar Baz";
+	const char *smallstring = "Bar";
+	char *ptr;
+	char *str;
+
+	str = strnstr(largestring, smallstring, -1);
+	printf("Str is : %s\n", str);
+	ptr = ft_strnstr(largestring, smallstring, -1);
+	printf("ft_Str is : %s\n", ptr);
+
 }
-*/
+ */

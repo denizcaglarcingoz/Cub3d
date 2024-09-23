@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   inp_check_main.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 16:02:10 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/20 17:34:01 by dcingoz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libraries.h"
 
-void	inp_check_main(char *file_name, t_inp_data *inp)
+void	inp_check_main(char *file_name, t_inp_data *inp, t_all *all)
 {
 	char	*data;
 
@@ -9,8 +21,7 @@ void	inp_check_main(char *file_name, t_inp_data *inp)
 	if (!data)
 		malloc_error();
 	data_check(data, inp);
-	set_p_pos(inp);
-	color_set(inp);
 	free(data);
-	data = NULL;
+	set_p_pos(inp, all);
+	color_set(inp);
 }

@@ -23,7 +23,7 @@ typedef struct s_texture_info	t_texture_info;
 
 /* INP CHECK */
 
-void			inp_check_main(char *file_name, t_inp_data *inp);
+void			inp_check_main(char *file_name, t_inp_data *inp, t_all *all);
 void			file_name_check(char *file_name);
 char			*get_file_data(char *file_name);
 void			data_check(char *data, t_inp_data *inp);
@@ -48,13 +48,12 @@ int				ver_border(t_inp_data *inp);
 int				char_check(t_inp_data *inp);
 int				hor_check(char **map);
 int				ver_check(char **map);
-void			set_p_pos(t_inp_data *inp);
+void			set_p_pos(t_inp_data *inp, t_all *all);
 void			color_set(t_inp_data *inp);
 
 /* INP DATA FREE */
 
 void			inp_data_free(t_inp_data *inp);
-void			free_split(char **split);
 
 /* Inp Check Errors */
 

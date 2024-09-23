@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 16:01:37 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/20 17:31:22 by dcingoz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libraries.h"
 
 static void	init_data(t_all *all)
@@ -48,7 +60,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		arg_error();
-	inp_check_main(argv[1], &(all.inp));
+	inp_check_main(argv[1], &(all.inp), &all);
 	mlx_inits(&all);
 	return (EXIT_SUCCESS);
 }

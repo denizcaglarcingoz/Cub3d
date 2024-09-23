@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 16:04:00 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/20 16:50:24 by dcingoz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libraries.h"
 
 void	w_move(t_all *all)
@@ -7,7 +19,13 @@ void	w_move(t_all *all)
 						* (M_PI / 180))) * 0.3) * 2)]
 		[(int)(all->player.p_pos_x
 			+ ((+0.1 * cos(all->player.rotation_angle
-				* (M_PI / 180))) * 0.3) * 2)] != '1')
+				* (M_PI / 180))) * 0.3) * 2)] != '1'
+		&& all->inp.map[(int)(all->player.p_pos_y + ((0.1
+					* sin(all->player.rotation_angle
+						* (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x
+			+ ((+0.1 * cos(all->player.rotation_angle
+				* (M_PI / 180))) * 0.3) * 2)] != ' ')
 	{
 		all->player.p_pos_x += (+0.1
 				* cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
@@ -23,7 +41,13 @@ void	s_move(t_all *all)
 						* (M_PI / 180))) * 0.3) * 2)]
 		[(int)(all->player.p_pos_x
 			- ((0.1 * cos(all->player.rotation_angle
-				* (M_PI / 180))) * 0.3) * 2)] != '1')
+				* (M_PI / 180))) * 0.3) * 2)] != '1'
+		&& all->inp.map[(int)(all->player.p_pos_y - ((0.1
+					* sin(all->player.rotation_angle
+						* (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x
+			- ((0.1 * cos(all->player.rotation_angle
+				* (M_PI / 180))) * 0.3) * 2)] != ' ')
 	{
 		all->player.p_pos_x -= (0.1
 				* cos(all->player.rotation_angle * (M_PI / 180))) * 0.3;
@@ -39,7 +63,13 @@ void	a_move(t_all *all)
 							+ 90) * (M_PI / 180))) * 0.3) * 2)]
 		[(int)(all->player.p_pos_x
 			- ((0.1 * cos((all->player.rotation_angle
-				+ 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
+				+ 90) * (M_PI / 180))) * 0.3) * 2)] != '1'
+		&& all->inp.map[(int)(all->player.p_pos_y - ((0.1
+					* sin((all->player.rotation_angle
+							+ 90) * (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x
+			- ((0.1 * cos((all->player.rotation_angle
+				+ 90) * (M_PI / 180))) * 0.3) * 2)] != ' ')
 	{
 		all->player.p_pos_y -= (0.1
 				* sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;
@@ -55,7 +85,13 @@ void	d_move(t_all *all)
 							+ 90) * (M_PI / 180))) * 0.3) * 2)]
 		[(int)(all->player.p_pos_x + ((0.1
 			* cos((all->player.rotation_angle
-				+ 90) * (M_PI / 180))) * 0.3) * 2)] != '1')
+				+ 90) * (M_PI / 180))) * 0.3) * 2)] != '1'
+		&& all->inp.map[(int)(all->player.p_pos_y + ((0.1
+					* sin((all->player.rotation_angle
+							+ 90) * (M_PI / 180))) * 0.3) * 2)]
+		[(int)(all->player.p_pos_x + ((0.1
+			* cos((all->player.rotation_angle
+				+ 90) * (M_PI / 180))) * 0.3) * 2)] != ' ')
 	{
 		all->player.p_pos_y += (0.1
 				* sin((all->player.rotation_angle + 90) * (M_PI / 180))) * 0.3;

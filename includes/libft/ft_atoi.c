@@ -3,52 +3,59 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 23:14:09 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/11 12:07:27 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 10:54:54 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 20:14:42 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	spaces(const char *str)
+static long	ft_conv_int(const char *nptr, int i)
 {
-	int	i;
+	long	conv_int;
 
-	i = 0;
-	while (str[i] == 32 || (str[i] >= 9 && str[i] <= 13))
+	conv_int = 0;
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+	{
+		conv_int = conv_int * 10 + (nptr[i] - 48);
 		i++;
-	return (i);
+	}
+	return (conv_int);
 }
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
-	int	sign;
-	int	result;
+	int		i;
+	int		j;
+	long	conv_int;
+	int		neg;
 
-	result = 0;
-	sign = 1;
-	i = spaces(nptr);
-	if (nptr[i] == 45 || nptr[i] == 43)
+	i = 0;
+	neg = 1;
+	while (nptr[i] == ' ' || (nptr[i] >= '\t' && nptr[i] <= '\r'))
+		i++;
+	j = i;
+	while (nptr[j] == '-' || nptr[j] == '+')
+		j++;
+	if (j - i > 1)
+		return (0);
+	if (nptr[i] == '-')
 	{
-		sign = 44 - nptr[i];
+		neg = -1;
 		i++;
 	}
-	while (nptr[i] >= '0' && nptr[i] <= '9')
-	{
-		result *= 10;
-		result += nptr[i] - '0';
+	if (nptr[i] == '+')
 		i++;
-	}
-	result *= sign;
-	return (result);
+	conv_int = ft_conv_int(nptr, i);
+	return (conv_int * neg);
 }
-/*
-int main()
+
+/* int main ()
 {
-		int n = ft_atoi("   +1234knsk");
-		printf("%d\n", n);
-	   return 0;
-}*/		
+	const char *ptr = "-+42";
+	int a = ft_atoi(ptr);
+	printf("%d", a);
+}
+ */

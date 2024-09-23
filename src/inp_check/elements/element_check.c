@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   element_check.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 16:03:12 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/20 17:35:57 by dcingoz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libraries.h"
 
 void	next_new_line(char *data, int *i)
@@ -47,8 +59,8 @@ void	element_check(char *data, int *i, t_inp_data *inp)
 	inp_to_null(inp);
 	while (data[*i])
 	{
-		if (data[*i] == ' ' || data[*i] == '\n')
-			while (data[*i] == ' ' || data[*i] == '\n')
+		if (data[*i] == ' ' || data[*i] == '\n' || data[*i] == '\t')
+			while (data[*i] == ' ' || data[*i] == '\n' || data[*i] == '\t')
 				(*i)++;
 		element_find(data, i, inp);
 		if (data[*i] == '1')

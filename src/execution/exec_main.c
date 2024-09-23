@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_main.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/20 16:04:02 by dcingoz           #+#    #+#             */
+/*   Updated: 2024/09/20 16:48:36 by dcingoz          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libraries.h"
 
 void	get_wall_side(t_all *all)
@@ -40,11 +52,12 @@ void	exec_lopp(t_all *all, int pixel_loc)
 	all->ray.ray_dir_y = sin(all->ray.ray_angle_radian) / 200;
 	all->ray.wall_hit_x = all->player.p_pos_x;
 	all->ray.wall_hit_y = all->player.p_pos_y;
-	while (all->ray.wall_hit_x < all->inp.map_width
-		&& all->ray.wall_hit_y < all->inp.map_height)
+	while (all->ray.wall_hit_x < all->inp.map_width && all->ray.wall_hit_y > 0
+		&& all->ray.wall_hit_y < all->inp.map_height && all->ray.wall_hit_x > 0)
 	{
 		if (all->inp.map[(int)all->ray.wall_hit_y]
-			[(int)all->ray.wall_hit_x] == '1')
+			[(int)all->ray.wall_hit_x] == '1' || all->inp.map
+			[(int)all->ray.wall_hit_y][(int)all->ray.wall_hit_x] == ' ')
 		{
 			get_wall_side(all);
 			break ;
@@ -65,8 +78,6 @@ int	exec_main(t_all *all)
 	i = 0;
 	fov = 60;
 	is_key_pressed(all);
-	if (all->libx.img)
-		mlx_destroy_image(all->libx.mlx, all->libx.img);
 	init_image(all);
 	ray_increment = fov / all->libx.win_witdh;
 	all->ray.ray_angle = all->player.rotation_angle - (fov / 2);

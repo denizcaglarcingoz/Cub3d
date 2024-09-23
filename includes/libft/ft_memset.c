@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jhotchki <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/04 14:33:22 by jhotchki          #+#    #+#             */
-/*   Updated: 2023/09/18 21:44:46 by jhotchki         ###   ########.fr       */
+/*   Created: 2023/09/06 11:48:39 by dcingoz           #+#    #+#             */
+/*   Updated: 2023/09/08 18:21:53 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,22 @@
 
 void	*ft_memset(void *s, int c, size_t n)
 {
-	char	*s1;
 	size_t	i;
+	char	*st;
 
 	i = 0;
-	s1 = (char *)s;
+	st = (char *)s;
 	while (i < n)
 	{
-		*s1 = (char)c;
+		st[i] = c;
 		i++;
-		s1++;
 	}
-	return ((char *)s);
+	return (st);
 }
 /*
-int main()
+int main ()
 {
-	//	int i = 0;
-		//int n = 10;
-		//int arr[n];
-		char str[20] = "stuff for the thing";
-	//	char *str1 = memset(str + 5, '#', 5*sizeof(char));
-		char *str1 = ft_memset((str + 5), 'A', 5);
-		
-		printf("%s\n", str1);
-	//	memset(arr, '/', n*sizeof(arr[0])); 
-
-		return 0;
+	char str[20];
+	ft_memset(str, 300, 10);
+	printf("%s", str);
 }*/
