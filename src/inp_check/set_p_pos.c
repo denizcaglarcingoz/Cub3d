@@ -12,7 +12,19 @@
 
 #include "libraries.h"
 
-void	set_p_pos(t_inp_data *inp)
+static void	set_player(t_inp_data *inp,t_all *all, int i, int j)
+{
+	if (inp->map[i][j] == 'N')
+		all->player.rotation_angle = 270;
+	else if (inp->map[i][j] == 'S')
+		all->player.rotation_angle = 90;
+	else if (inp->map[i][j] == 'W')
+		all->player.rotation_angle = 180;
+	else if (inp->map[i][j] == 'E')
+		all->player.rotation_angle = 0;
+}
+
+void	set_p_pos(t_inp_data *inp, t_all *all)
 {
 	int		i;
 	int		j;
@@ -28,6 +40,7 @@ void	set_p_pos(t_inp_data *inp)
 			{
 				inp->p_pos_x = j;
 				inp->p_pos_y = i;
+				set_player(inp, all, i, j);
 				return ;
 			}
 			j++;

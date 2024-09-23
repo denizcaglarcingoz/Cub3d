@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		arg_error();
-	inp_check_main(argv[1], &(all.inp));
+	inp_check_main(argv[1], &(all.inp), &all);
 	mlx_inits(&all);
 	return (EXIT_SUCCESS);
 }

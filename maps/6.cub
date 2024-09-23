@@ -1,7 +1,7 @@
-WE texture/tonneau.xpm
-SO texture/eagle.xpm
-EA texture/EA.xpm
-NO texture/purplestone.xpm
+WE texture/SO.xpm
+SO texture/SO.xpm   	
+EA texture/SO.xpm
+NO texture/SO.xpm
 
 F255,255,252    
 C 0,0,00    

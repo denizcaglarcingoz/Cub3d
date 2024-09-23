@@ -19,11 +19,11 @@ char	*get_path(char *data, int *i, int *checks)
 
 	*checks += 1;
 	*i += 2;
-	while (data[*i] == ' ')
+	while (data[*i] == ' ' || data[*i] == '\t')
 		(*i)++;
 	j = *i;
 	path = NULL;
-	while (data[j] != '\n')
+	while (data[j] != '\n' && data[j] != ' ' && data[j] != '\t')
 		j++;
 	if (j == *i)
 		return (NULL);
@@ -52,7 +52,7 @@ void	path_check(char *data, int *i, t_inp_data *inp)
 	checks_init(checks);
 	while (data[*i])
 	{
-		while (data[*i] == '\n' || data[*i] == ' ')
+		while (data[*i] == '\n' || data[*i] == ' ' || data[*i] == '\t')
 			(*i)++;
 		if (data[*i] == 'N' && data[*i + 1] == 'O')
 			inp->no_path = get_path(data, i, &(checks[0]));

@@ -12,7 +12,7 @@
 
 #include "libraries.h"
 
-void	inp_check_main(char *file_name, t_inp_data *inp)
+void	inp_check_main(char *file_name, t_inp_data *inp, t_all *all)
 {
 	char	*data;
 
@@ -22,6 +22,6 @@ void	inp_check_main(char *file_name, t_inp_data *inp)
 		malloc_error();
 	data_check(data, inp);
 	free(data);
-	set_p_pos(inp);
+	set_p_pos(inp, all);
 	color_set(inp);
 }

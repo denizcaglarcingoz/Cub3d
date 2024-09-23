@@ -31,7 +31,7 @@ static char	**ft_free_substrings(char **splitted, int j)
 		j--;
 	}
 	free(splitted);
-	return (splitted);
+	return (NULL);
 }
 
 static char	**ft_split_into(char **splitted, char const *s, char c)
