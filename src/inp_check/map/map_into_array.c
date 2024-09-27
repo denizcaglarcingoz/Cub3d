@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:26 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/20 16:02:27 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/27 18:43:43 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	*map_array_size(char *data, int i, int *size)
 	last_i = i;
 	while (data[i])
 	{
-		if (data[i] == '\n')
+		if (data[i] == '\n' || data[i + 1] == '\0')
 		{
 			size[0]++;
 			if (size[1] == 0)
@@ -37,7 +37,6 @@ int	*map_array_size(char *data, int i, int *size)
 		}
 		i++;
 	}
-	size[0]++;
 	return (size);
 }
 

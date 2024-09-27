@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:41 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/20 16:02:42 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/27 17:23:10 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@ int	ver_check(char **map)
 		i = 0;
 		while (map[i][j] == ' ')
 			i++;
-		if (map[i][j] != '1')
-			return (1);
-		if (ver_main_loop(map, i, j) == 1)
-			return (1);
+		if (map[i][j] != '\0')
+		{
+			if (map[i][j] != '1')
+				return (1);
+			if (ver_main_loop(map, i, j) == 1)
+				return (1);
+		}
 		j++;
 	}
 	return (0);

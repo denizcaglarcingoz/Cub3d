@@ -58,7 +58,7 @@ OBJ = $(SRCS:$(SRC_DIR)/%.c=$(OBJ_DIR)/%.o)
 CFLAGS := -Wall -Wextra -Werror -Iincludes -I/usr/local/lib
 
 #LDFLAGS := -L/usr/local/lib -lmlx -lXext -lX11 -lreadline -lhistory
-LDFLAGS := -Llib -lmlx -lXext -lX11 -lreadline -lhistory -lm
+LDFLAGS := -Llib -lmlx -lXext -lX11 -lm
 
 RM := rm -f
 

@@ -6,13 +6,13 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:00 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/20 16:02:01 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/27 19:21:43 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libraries.h"
 
-static void	set_player(t_inp_data *inp,t_all *all, int i, int j)
+void	set_player(t_inp_data *inp, t_all *all, int i, int j)
 {
 	if (inp->map[i][j] == 'N')
 		all->player.rotation_angle = 270;

@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:02:51 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/20 16:02:52 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/27 18:18:02 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ int	ver_last_check(t_inp_data *inp)
 		j--;
 		while (j > 0 && inp->map[j][i] == ' ')
 			j--;
-		if (j == 0 && inp->map[j][i] == ' ')
-			break ;
-		if (inp->map[j][i] != '1')
+		if (inp->map[j][i] != '1' && inp->map[j][i] != ' ')
 			return (1);
 		i++;
 	}
@@ -46,7 +44,7 @@ int	ver_first_check(t_inp_data *inp)
 		j = 0;
 		while (inp->map[j][i] == ' ')
 			j++;
-		if (inp->map[j][i] != '1')
+		if (inp->map[j][i] != '1' && inp->map[j][i] != '\0')
 			return (1);
 		i++;
 	}

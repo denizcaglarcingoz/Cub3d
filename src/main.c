@@ -6,7 +6,7 @@
 /*   By: dcingoz <dcingoz@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/20 16:01:37 by dcingoz           #+#    #+#             */
-/*   Updated: 2024/09/20 17:31:22 by dcingoz          ###   ########.fr       */
+/*   Updated: 2024/09/27 17:07:27 by dcingoz          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	init_data(t_all *all)
 	all->libx.max_iterations = 100;
 	all->libx.win_height = 600;
 	all->libx.win_witdh = 600;
-	all->player.rotation_angle = 0;
 	all->player.p_pos_x = all->inp.p_pos_x + 0.5;
 	all->player.p_pos_y = all->inp.p_pos_y + 0.5;
 	all->libx.auto_key = XOpenDisplay(NULL);
